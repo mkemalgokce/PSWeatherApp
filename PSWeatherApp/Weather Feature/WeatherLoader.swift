@@ -7,6 +7,8 @@
 
 import Foundation
 
+public typealias LoadWeatherResult = Result<[Weather], Error>
+
 protocol WeatherLoader {
-    func load(completion: @escaping (Result<[Weather], Error>) -> Void)
+    func load(completion: @escaping (LoadWeatherResult) -> Void)
 }
