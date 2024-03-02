@@ -8,13 +8,14 @@
 import Foundation
 
 final class LocalWeatherLoader: WeatherLoader {
-    
     private let store: WeatherStore
+    private let currentDate: () -> Date
     
     typealias Result = LoadWeatherResult
     
-    init(store: WeatherStore) {
+    init(store: WeatherStore, currentDate: @escaping () -> Date) {
         self.store = store
+        self.currentDate = currentDate
     }
     
     func load(completion: @escaping (Result) -> Void) {
