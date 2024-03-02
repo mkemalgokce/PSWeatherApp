@@ -20,6 +20,8 @@
 		55E36C2F2B9363D700CC9AEC /* RemoteWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C2E2B9363D700CC9AEC /* RemoteWeatherLoader.swift */; };
 		55E36C322B93647900CC9AEC /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C312B93647900CC9AEC /* HTTPClient.swift */; };
 		55E36C342B93652400CC9AEC /* WeatherItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C332B93652400CC9AEC /* WeatherItemsMapper.swift */; };
+		55E36C382B93657900CC9AEC /* LocalWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C372B93657900CC9AEC /* LocalWeatherLoader.swift */; };
+		55E36C3A2B9365BA00CC9AEC /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C392B9365BA00CC9AEC /* WeatherStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		55E36C2E2B9363D700CC9AEC /* RemoteWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherLoader.swift; sourceTree = "<group>"; };
 		55E36C312B93647900CC9AEC /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		55E36C332B93652400CC9AEC /* WeatherItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherItemsMapper.swift; sourceTree = "<group>"; };
+		55E36C372B93657900CC9AEC /* LocalWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherLoader.swift; sourceTree = "<group>"; };
+		55E36C392B9365BA00CC9AEC /* WeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,8 @@
 		55E36C282B93631200CC9AEC /* Weather Cache */ = {
 			isa = PBXGroup;
 			children = (
+				55E36C372B93657900CC9AEC /* LocalWeatherLoader.swift */,
+				55E36C392B9365BA00CC9AEC /* WeatherStore.swift */,
 			);
 			path = "Weather Cache";
 			sourceTree = "<group>";
@@ -325,6 +331,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E36C3A2B9365BA00CC9AEC /* WeatherStore.swift in Sources */,
+				55E36C382B93657900CC9AEC /* LocalWeatherLoader.swift in Sources */,
 				55E36C2B2B93635E00CC9AEC /* Weather.swift in Sources */,
 				55E36BF92B93625C00CC9AEC /* ViewController.swift in Sources */,
 				55E36C342B93652400CC9AEC /* WeatherItemsMapper.swift in Sources */,

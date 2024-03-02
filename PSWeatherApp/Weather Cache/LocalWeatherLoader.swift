@@ -6,3 +6,19 @@
 //
 
 import Foundation
+
+final class LocalWeatherLoader: WeatherLoader {
+    
+    private let store: WeatherStore
+    
+    typealias Result = LoadWeatherResult
+    
+    init(store: WeatherStore) {
+        self.store = store
+    }
+    
+    func load(completion: @escaping (Result) -> Void) {
+        
+    }
+    
+}
