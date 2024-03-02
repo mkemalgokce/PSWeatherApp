@@ -22,4 +22,9 @@ final class LocalWeatherLoader: WeatherLoader {
         
     }
     
+    func save(_ weather: [Weather]) throws {
+            try store.deleteCachedWeather()
+            try store.insert(weather, timestamp: currentDate())
+        }
+    
 }
