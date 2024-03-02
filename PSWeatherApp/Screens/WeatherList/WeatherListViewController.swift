@@ -5,4 +5,8 @@
 //  Created by Mustafa Kemal Gökçe on 2.03.2024.
 //
 
-import Foundation
+import UIKit
+
+final class WeatherListViewController: UIViewController {
+    
+}
