@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainTabBarViewController.swift
 //  PSWeatherApp
 //
 //  Created by Mustafa Kemal Gökçe on 2.03.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainTabBarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
