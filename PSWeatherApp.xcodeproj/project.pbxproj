@@ -15,6 +15,8 @@
 		55E36C0C2B93625E00CC9AEC /* PSWeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C0B2B93625E00CC9AEC /* PSWeatherAppTests.swift */; };
 		55E36C162B93625E00CC9AEC /* PSWeatherAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C152B93625E00CC9AEC /* PSWeatherAppUITests.swift */; };
 		55E36C182B93625E00CC9AEC /* PSWeatherAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C172B93625E00CC9AEC /* PSWeatherAppUITestsLaunchTests.swift */; };
+		55E36C2B2B93635E00CC9AEC /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C2A2B93635E00CC9AEC /* Weather.swift */; };
+		55E36C2D2B93638000CC9AEC /* WeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36C2C2B93638000CC9AEC /* WeatherLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		55E36C112B93625E00CC9AEC /* PSWeatherAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PSWeatherAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E36C152B93625E00CC9AEC /* PSWeatherAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSWeatherAppUITests.swift; sourceTree = "<group>"; };
 		55E36C172B93625E00CC9AEC /* PSWeatherAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSWeatherAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		55E36C2A2B93635E00CC9AEC /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		55E36C2C2B93638000CC9AEC /* WeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 		55E36C262B93630400CC9AEC /* Weather Feature */ = {
 			isa = PBXGroup;
 			children = (
+				55E36C2A2B93635E00CC9AEC /* Weather.swift */,
+				55E36C2C2B93638000CC9AEC /* WeatherLoader.swift */,
 			);
 			path = "Weather Feature";
 			sourceTree = "<group>";
@@ -302,7 +308,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E36C2B2B93635E00CC9AEC /* Weather.swift in Sources */,
 				55E36BF92B93625C00CC9AEC /* ViewController.swift in Sources */,
+				55E36C2D2B93638000CC9AEC /* WeatherLoader.swift in Sources */,
 				55E36BF52B93625C00CC9AEC /* AppDelegate.swift in Sources */,
 				55E36BF72B93625C00CC9AEC /* SceneDelegate.swift in Sources */,
 			);

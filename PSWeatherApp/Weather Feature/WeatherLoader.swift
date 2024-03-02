@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol WeatherLoader {
+    func load(completion: @escaping (Result<[Weather], Error>) -> Void)
+}
