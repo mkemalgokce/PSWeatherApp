@@ -6,3 +6,20 @@
 //
 
 import Foundation
+import CoreData
+
+final class CoreDataWeatherStore: WeatherStore {
+    func deleteCachedWeather() throws {
+        
+    }
+    
+    func insert(_ weather: [Weather], timestamp: Date) throws {
+        
+    }
+    
+    func retrieve() throws -> CachedWeather? {
+        return nil
+    }
+    
+    
+}
