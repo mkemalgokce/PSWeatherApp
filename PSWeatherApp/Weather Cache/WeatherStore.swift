@@ -14,3 +14,5 @@ protocol WeatherStore {
     func insert(_ weather: [Weather], timestamp: Date) throws
     func retrieve() throws -> CachedWeather?
 }
+
+
