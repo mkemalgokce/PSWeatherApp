@@ -31,16 +31,15 @@ final class WeatherDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .customBackground
+        viewModel.delegate = self
         weatherDetailsView.configure(with: viewModel.weather)
+        view.backgroundColor = .customBackground
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationItem.title = "Details"
-        navigationItem.largeTitleDisplayMode = .never
+        configureNavigationBar()
     }
     
     private func setupCollectionView() {
@@ -51,8 +50,71 @@ final class WeatherDetailsViewController: UIViewController {
 
     }
     
+    private func configureNavigationBar() {
+        navigationItem.title = "Details"
+        navigationItem.largeTitleDisplayMode = .never
+        
+        let image = viewModel.isInFavourite ? UIImage(systemName: "star.slash")
+        : UIImage(systemName: "star")
+        let item = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(favouriteButtonTapped))
+        navigationItem.rightBarButtonItem = item
+    }
+    
+    @objc private func favouriteButtonTapped() {
+        viewModel.favourite()
+    }
+    
 }
 
+extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
+    
+    func didStartLoading() {
+        
+    }
+    
+    func didFinishLoading() {
+        
+    }
+    
+
+    func didFailToCheckFavourite(_ error: Error) {
+        showAlertOnMainThread(title: "Error", message: error.localizedDescription)
+    }
+    
+    func didCheckToFavourite() {
+        DispatchQueue.main.async { [weak self] in
+            self?.configureNavigationBar()
+        }
+    }
+    
+    func didAddToFavourite() {
+        print("Added")
+        DispatchQueue.main.async { [weak self] in
+            self?.configureNavigationBar()
+        }
+        
+    }
+    
+    func didFailToAddFavourite(_ error: Error) {
+        print("Fail add: \(error)")
+        showAlertOnMainThread(title: "Error", message: error.localizedDescription)
+    }
+    
+    func didRemoveToFavourite() {
+        print("Removed")
+        DispatchQueue.main.async { [weak self] in
+            self?.configureNavigationBar()
+            
+        }
+    }
+    
+    func didFailToRemoveFavourite(_ error: Error) {
+        print("Fail remove: \(error)")
+        showAlertOnMainThread(title: "Error", message: error.localizedDescription)
+    }
+    
+    
+}
 //MARK: - UICollectionViewDelegate & UICollectionViewDataSource methods
 extension WeatherDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -75,25 +137,6 @@ extension WeatherDetailsViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         8
     }
-    
-    
-    
+
 }
 
-@available(iOS 17, *)
-#Preview {
-    UINavigationController(rootViewController: WeatherDetailsViewController(
-        viewModel: WeatherDetailViewModel(weather: Weather(id: 1,
-                                                           city: "Istanbul",
-                                                           country: "Turkey",
-                                                           temperature: 21.2,
-                                                           weatherDescription: .cloudy,
-                                                           humidity: 12,
-                                                           windSpeed: 23, forecast: [
-                                                            Forecast(date: Date.now.description, temperature: 23, weatherDescription: .sunny, humidity: 12, windSpeed: 23),
-                                                            Forecast(date: Date.now.description, temperature: 25, weatherDescription: .rain, humidity: 12, windSpeed: 23),
-                                                            Forecast(date: Date.now.description, temperature: 23, weatherDescription: .sunny, humidity: 12, windSpeed: 23),
-                                                           
-                                                           ]))
-    ))
-}

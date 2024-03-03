@@ -48,17 +48,16 @@ final class WeatherListViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    private func presentDetails(with weather: Weather) {
-        let viewModel = WeatherDetailViewModel(weather: weather)
+    private func presentWeatherDetails(_ weather: Weather) {
+        let viewModel = WeatherDetailViewModel(weather: weather, favouriteManager: FavouriteWeatherManager.shared)
         let viewController = WeatherDetailsViewController(viewModel: viewModel)
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .done, target: self, action: #selector(addToFavourites))
+        
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-
-    
-    @objc private func addToFavourites() {
-        
+    @objc private func addToFavourites(_ indexPath: IndexPath) {
+        let weather = viewModel.weather(at: indexPath)
+        viewModel.addWeatherToFavourites(weather)
     }
     
 }
@@ -80,13 +79,31 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let weather = viewModel.weather(at: indexPath)
-        presentDetails(with: weather)
+        presentWeatherDetails(weather)
     }
 }
 
 
 // MARK: - WeatherListViewModelDelegate methods
 extension WeatherListViewController: WeatherListViewModelDelegate {
+    func didAddToFavourite() {
+        
+    }
+    
+    func didFailToAddFavourite(_ error: Error) {
+        
+    }
+    
+    func didRemoveToFavourite() {
+        
+    }
+    
+    func didFailToRemoveFavourite(_ error: Error) {
+        
+    }
+    
+
+    
     func didFetchWeathers() {
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()

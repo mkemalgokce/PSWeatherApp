@@ -90,6 +90,8 @@ final class WeatherDetailsForecastCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         layer.cornerRadius = 20
+        layer.borderColor = UIColor.white.cgColor
+        layer.borderWidth = 2
         backgroundColor = .rain
         
         

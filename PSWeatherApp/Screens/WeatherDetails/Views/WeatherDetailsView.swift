@@ -123,8 +123,8 @@ final class WeatherDetailsView: UIView {
             weatherImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1/2),
         
             countryAndCityLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            countryAndCityLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            countryAndCityLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            countryAndCityLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            countryAndCityLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
             topHStack.topAnchor.constraint(equalTo: countryAndCityLabel.bottomAnchor),
             topHStack.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
