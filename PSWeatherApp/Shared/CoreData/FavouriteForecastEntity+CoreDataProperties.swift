@@ -1,5 +1,5 @@
 //
-//  ForecastEntity+CoreDataProperties.swift
+//  FavouriteForecastEntity+CoreDataProperties.swift
 //  PSWeatherApp
 //
 //  Created by Mustafa Kemal Gökçe on 3.03.2024.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension ForecastEntity {
+extension FavouriteForecastEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<ForecastEntity> {
-        return NSFetchRequest<ForecastEntity>(entityName: "ForecastEntity")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<FavouriteForecastEntity> {
+        return NSFetchRequest<FavouriteForecastEntity>(entityName: "FavouriteForecastEntity")
     }
 
     @NSManaged public var date: String?
@@ -22,10 +22,10 @@ extension ForecastEntity {
     @NSManaged public var temperature: Double
     @NSManaged public var weather_description: String?
     @NSManaged public var wind_speed: Double
-    @NSManaged public var weather: WeatherEntity?
+    @NSManaged public var weather: FavouriteWeatherEntity?
 
 }
 
-extension ForecastEntity : Identifiable {
+extension FavouriteForecastEntity : Identifiable {
 
 }

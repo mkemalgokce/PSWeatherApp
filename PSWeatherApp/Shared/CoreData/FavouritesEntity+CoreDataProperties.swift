@@ -16,7 +16,6 @@ extension FavouritesEntity {
         return NSFetchRequest<FavouritesEntity>(entityName: "FavouritesEntity")
     }
 
-    @NSManaged public var id: UUID?
     @NSManaged public var weather: NSSet?
 
 }
@@ -25,10 +24,10 @@ extension FavouritesEntity {
 extension FavouritesEntity {
 
     @objc(addWeatherObject:)
-    @NSManaged public func addToWeather(_ value: WeatherEntity)
+    @NSManaged public func addToWeather(_ value: FavouriteWeatherEntity)
 
     @objc(removeWeatherObject:)
-    @NSManaged public func removeFromWeather(_ value: WeatherEntity)
+    @NSManaged public func removeFromWeather(_ value: FavouriteWeatherEntity)
 
     @objc(addWeather:)
     @NSManaged public func addToWeather(_ values: NSSet)

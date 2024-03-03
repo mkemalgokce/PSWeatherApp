@@ -1,5 +1,5 @@
 //
-//  WeatherEntity+CoreDataProperties.swift
+//  FavouriteWeatherEntity+CoreDataProperties.swift
 //  PSWeatherApp
 //
 //  Created by Mustafa Kemal Gökçe on 3.03.2024.
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension WeatherEntity {
+extension FavouriteWeatherEntity {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<WeatherEntity> {
-        return NSFetchRequest<WeatherEntity>(entityName: "WeatherEntity")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<FavouriteWeatherEntity> {
+        return NSFetchRequest<FavouriteWeatherEntity>(entityName: "FavouriteWeatherEntity")
     }
 
     @NSManaged public var city: String?
@@ -23,19 +23,19 @@ extension WeatherEntity {
     @NSManaged public var temperature: Double
     @NSManaged public var weather_description: String?
     @NSManaged public var wind_speed: Double
-    @NSManaged public var cache: CacheEntity?
+    @NSManaged public var favourite: FavouritesEntity?
     @NSManaged public var forecast: NSSet?
 
 }
 
 // MARK: Generated accessors for forecast
-extension WeatherEntity {
+extension FavouriteWeatherEntity {
 
     @objc(addForecastObject:)
-    @NSManaged public func addToForecast(_ value: ForecastEntity)
+    @NSManaged public func addToForecast(_ value: FavouriteForecastEntity)
 
     @objc(removeForecastObject:)
-    @NSManaged public func removeFromForecast(_ value: ForecastEntity)
+    @NSManaged public func removeFromForecast(_ value: FavouriteForecastEntity)
 
     @objc(addForecast:)
     @NSManaged public func addToForecast(_ values: NSSet)
@@ -45,6 +45,6 @@ extension WeatherEntity {
 
 }
 
-extension WeatherEntity : Identifiable {
+extension FavouriteWeatherEntity : Identifiable {
 
 }

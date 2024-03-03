@@ -39,15 +39,5 @@ extension CacheEntity {
 }
 
 extension CacheEntity : Identifiable {
-    func toCachedWeather() -> CachedWeather {
-       guard let timestamp, let weather else { fatalError("Error on casting Cache Entity") }
-       var weathers: [Weather] = []
-       for entity in weather {
-           if let weatherEntity = entity as? WeatherEntity {
-               weathers.append(weatherEntity.toWeather())
-           }
-       }
-       
-       return (weathers, timestamp)
-   }
+
 }
