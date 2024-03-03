@@ -24,44 +24,46 @@ final class FavouriteWeatherStore: FavouriteStore {
     }
     
     func saveFavourite(_ weather: Weather) throws {
-        let favourites = FavouritesEntity(context: context)
         
-        let favourite = FavouriteWeatherEntity.create(from: weather, context: context)
-        favourites.addToWeather(favourite)
+        let favourite = firstFavourite()
+        if  let favourite {
+            let entity = FavouriteWeatherEntity.create(from: weather, context: context)
+            favourite.addToWeather(entity)
+        }else {
+            let favourites = FavouritesEntity(context: context)
+            
+            let favourite = FavouriteWeatherEntity.create(from: weather, context: context)
+            favourites.addToWeather(favourite)
+        }
+        try context.save()
+        
+    }
+    
+    func deleteFavourite(_ weather: Weather) throws {
+        let favouriteEntities = try context.fetch(FavouritesEntity.fetchRequest())
+        
+        for favouriteEntity in favouriteEntities {
+            guard let weathers = favouriteEntity.weather else { continue }
+            for weather in weathers {
+                if let weatherEntity = weather as? FavouriteWeatherEntity {
+                    try FavouriteWeatherEntity.delete(weatherEntity, context: context)
+                }
+            }
+        }
         
         try context.save()
     }
     
-    func deleteFavourite(_ weather: Weather) throws {
-        try context.performAndWait {
-            let favouriteEntities = try context.fetch(FavouritesEntity.fetchRequest())
-            
-            for favouriteEntity in favouriteEntities {
-                guard let weathers = favouriteEntity.weather else { continue }
-                for weather in weathers {
-                    if let weatherEntity = weather as? WeatherEntity {
-                        try WeatherEntity.delete(weatherEntity, context: context)
-                    }
-                }
-                context.delete(favouriteEntity)
-            }
-            
-            try context.save()
-        }
-    }
-    
     func retrieve() throws -> [Weather] {
-        try context.performAndWait {
-            let fetchRequest: NSFetchRequest<FavouritesEntity> = FavouritesEntity.fetchRequest()
-            
-            let result = try context.fetch(fetchRequest)
-            
-            if let first = result.first {
-                return first.toWeathers()
-            }
-            
-            return []
+        let fetchRequest: NSFetchRequest<FavouritesEntity> = FavouritesEntity.fetchRequest()
+        
+        let result = try context.fetch(fetchRequest)
+        
+        if let first = result.first {
+            return first.toWeathers()
         }
+        
+        return []
 
     }
     
@@ -78,6 +80,14 @@ final class FavouriteWeatherStore: FavouriteStore {
             return false
         }
         
+    }
+    
+    func firstFavourite() -> FavouritesEntity? {
+        let fetchRequest: NSFetchRequest<FavouritesEntity> = FavouritesEntity.fetchRequest()
+        
+        let result = try? context.fetch(fetchRequest).first
+        
+        return result
     }
     
     

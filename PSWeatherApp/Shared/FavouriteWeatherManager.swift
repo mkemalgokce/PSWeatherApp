@@ -17,7 +17,6 @@ protocol FavouriteManagerProtocol {
 
 final class FavouriteWeatherManager: FavouriteManagerProtocol {
 
-    
     private var store: FavouriteStore?
     static let shared = FavouriteWeatherManager()
     
