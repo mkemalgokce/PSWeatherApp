@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 final class LocalWeatherLoader: WeatherLoader {
     private let store: WeatherStore
     private let currentDate: () -> Date
@@ -23,7 +24,7 @@ final class LocalWeatherLoader: WeatherLoader {
     }
     
     func load(completion: @escaping (Result) -> Void) {
-        if let cache = try? store.retrieve(), WeatherCachePolicy.validate(cache.timestamp, against: currentDate()) {
+        if let cache = try? store.retrieve(), WeatherCachePolicy.validate(cache.timestamp ?? Date.now, against: currentDate()) {
             completion(.success(cache.weather))
         }else {
             completion(.failure(Error.cacheNotFound))
@@ -31,7 +32,7 @@ final class LocalWeatherLoader: WeatherLoader {
     }
     
     func save(_ weather: [Weather]) throws {
-        try store.deleteCachedWeather()
+        try store.deleteWeather()
         try store.insert(weather, timestamp: currentDate())
     }
     
@@ -42,11 +43,12 @@ extension LocalWeatherLoader {
     
     public func validateCache() throws {
         do {
-            if let cache = try store.retrieve(), !WeatherCachePolicy.validate(cache.timestamp, against: currentDate()) {
+            let cache = try store.retrieve()
+            if !WeatherCachePolicy.validate(cache.timestamp ?? Date.now, against: currentDate()) {
                 throw InvalidCache()
             }
         } catch {
-            try store.deleteCachedWeather()
+            try store.deleteWeather()
         }
     }
 }

@@ -7,12 +7,11 @@
 
 import Foundation
 
-typealias CachedWeather = (weather: [Weather], timestamp: Date)
+typealias WeatherWithTimestamp = (weather: [Weather], timestamp: Date?)
 
 protocol WeatherStore {
-    func deleteCachedWeather() throws
+    func deleteWeather() throws
     func insert(_ weather: [Weather], timestamp: Date) throws
-    func retrieve() throws -> CachedWeather?
+    func retrieve() throws -> WeatherWithTimestamp
 }
-
 
