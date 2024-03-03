@@ -8,10 +8,10 @@
 import Foundation
 
 final class RemoteWithLocalFallbackWeatherLoader: WeatherLoader {
-    private let localLoader: WeatherLoader
-    private let remoteLoader: WeatherLoader
+    private let localLoader: LocalWeatherLoader
+    private let remoteLoader: RemoteWeatherLoader
     
-    init(localLoader: WeatherLoader, remoteLoader: WeatherLoader) {
+    init(localLoader: LocalWeatherLoader, remoteLoader: RemoteWeatherLoader) {
         self.localLoader = localLoader
         self.remoteLoader = remoteLoader
     }
@@ -21,11 +21,18 @@ final class RemoteWithLocalFallbackWeatherLoader: WeatherLoader {
             guard let self else { return }
             switch result {
                 case .success(let result):
-                    completion(.success(result))
+                    do {
+                        try localLoader.save(result)
+                        completion(.success(result))
+                    }catch {
+                        completion(.failure(error))
+                    }
                 case .failure(_):
-                    localLoader.load { result in completion(result) }
+                    localLoader.load { localResult in
+                        completion(localResult)
+                    }
             }
         }
     }
-
+    
 }
