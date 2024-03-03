@@ -31,10 +31,16 @@ final class WeatherDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.title
+        view.backgroundColor = .customBackground
         weatherDetailsView.configure(with: viewModel.weather)
-        navigationController?.navigationBar.prefersLargeTitles = true
         setupCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.title = "Details"
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func setupCollectionView() {
@@ -57,14 +63,20 @@ extension WeatherDetailsViewController: UICollectionViewDelegate, UICollectionVi
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherDetailsForecastCollectionViewCell.identifier, for: indexPath) as? WeatherDetailsForecastCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = viewModel.weather.weatherDescription.color()
         cell.configure(with: viewModel.forecast(at: indexPath))
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 200, height: 250)
+        let width = (view.bounds.width / 2) - 16
+        return CGSize(width: width, height: width * 1.2)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        8
+    }
+    
+    
     
 }
 

@@ -11,6 +11,15 @@ final class WeatherDetailsView: UIView {
     private let humidityTitle: String = "Humidity"
     private let windSpeedTitle: String = "Wind Speed"
     
+    private let countryAndCityLabel: PSHeaderLabel = {
+        let label = PSHeaderLabel()
+        label.font = .systemFont(ofSize: 48, weight: .semibold)
+        label.text = "..."
+        label.numberOfLines = 2
+        label.textAlignment = .center
+        return label
+    }()
+    
     private let weatherImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +94,6 @@ final class WeatherDetailsView: UIView {
         super.init(frame: .zero)
         setupView()
         setupLayout()
-        backgroundColor = .customBackground
     }
     
     required init?(coder: NSCoder) {
@@ -93,6 +101,7 @@ final class WeatherDetailsView: UIView {
     }
     
     private func setupView() {
+        addSubview(countryAndCityLabel)
         addSubview(topHStack)
         
 
@@ -113,10 +122,15 @@ final class WeatherDetailsView: UIView {
             
             weatherImageView.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 1/2),
         
-            topHStack.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            countryAndCityLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            countryAndCityLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            countryAndCityLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             
-            topHStack.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor),
-            topHStack.heightAnchor.constraint(equalTo:topHStack.widthAnchor, multiplier: 0.5),
+            topHStack.topAnchor.constraint(equalTo: countryAndCityLabel.bottomAnchor),
+            topHStack.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            
+            topHStack.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -32),
+            topHStack.heightAnchor.constraint(equalToConstant: 150),
             
             weatherDescriptionLabel.topAnchor.constraint(equalTo: topHStack.bottomAnchor, constant: 16),
             weatherDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 16),
@@ -129,14 +143,18 @@ final class WeatherDetailsView: UIView {
             
             humidityInfoView.widthAnchor.constraint(equalTo: windSpeedInfoView.widthAnchor),
             
-            collectionView.heightAnchor.constraint(equalToConstant: 250),
+            collectionView.topAnchor.constraint(equalTo: humidityInfoView.bottomAnchor, constant: 16),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
         ])
     }
     
     func configure(with weather: Weather) {
+        countryAndCityLabel.attributedText = NSMutableAttributedString(strings: [
+            .init(string: "\(weather.country)\n", attributes: [.font: UIFont.systemFont(ofSize: 48, weight: .bold)]),
+            .init(string: "\(weather.city)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]),
+        ])
         temperatureLabel.text = "\(weather.temperature)"
         
         humidityInfoView.text = "\(humidityTitle): \(weather.humidity)"
@@ -144,7 +162,6 @@ final class WeatherDetailsView: UIView {
         
         weatherDescriptionLabel.text = weather.weatherDescription.rawValue.capitalizedFirstLetterOfEachWord()
         weatherImageView.image = weather.weatherDescription.image()
-        backgroundColor = weather.weatherDescription.color()
         
     }
 }
