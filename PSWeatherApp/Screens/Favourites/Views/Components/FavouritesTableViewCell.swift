@@ -22,7 +22,7 @@ final class FavouritesTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 20
         view.backgroundColor = .white.withAlphaComponent(0.2)
-
+        
         return view
     }()
     
@@ -70,13 +70,12 @@ final class FavouritesTableViewCell: UITableViewCell {
     func update() {
         containerView.backgroundColor = randomColor()
     }
-    
     func randomColor() -> UIColor {
-            let red = CGFloat.random(in: 0...1)
-            let green = CGFloat.random(in: 0...1)
-            let blue = CGFloat.random(in: 0...1)
-        return UIColor(red: red, green: green, blue: blue, alpha: 0.4)
-        }
+        let red = CGFloat.random(in: 0...1)
+        let green = CGFloat.random(in: 0...1)
+        let blue = CGFloat.random(in: 0...1)
+        return UIColor(red: red, green: green, blue: blue, alpha: 0.5)
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

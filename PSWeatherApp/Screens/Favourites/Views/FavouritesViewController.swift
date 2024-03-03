@@ -39,6 +39,13 @@ final class FavouritesViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.fetch()
     }
+    
+    private func presentWeatherDetails(_ weather: Weather) {
+        let viewModel = WeatherDetailViewModel(weather: weather, favouriteManager: FavouriteWeatherManager.shared)
+        let viewController = WeatherDetailsViewController(viewModel: viewModel)
+        
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - FavouritesViewModelDelegate methods
@@ -74,6 +81,11 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let weather = viewModel.weather(at: indexPath)
+        presentWeatherDetails(weather)
     }
     
 }
