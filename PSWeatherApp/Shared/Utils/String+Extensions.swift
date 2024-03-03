@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+extension String {
+    func capitalizedFirstLetterOfEachWord() -> String {
+        let words = components(separatedBy: " ")
+        let capitalizedWords = words.map { $0.prefix(1).capitalized + $0.dropFirst() }
+        return capitalizedWords.joined(separator: " ")
+    }
+}
