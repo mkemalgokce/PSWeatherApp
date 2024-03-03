@@ -9,29 +9,18 @@ import Foundation
 import CoreData
 
 final class CoreDataWeatherStore: WeatherStore {
-    
     enum Error: Swift.Error {
         case cacheNotFound
-    }
+    }    
     
-    let persistentContainer: NSPersistentContainer = {
-        
-        let container = NSPersistentContainer(name: "WeatherDataModel")
-        container.loadPersistentStores { (storeDescription, error) in
-            if let error = error {
-                fatalError("Loading of store failed \(error)")
-            }
-        }
-        return container
-    }()
+    private let context: NSManagedObjectContext
     
-    
-    private var context: NSManagedObjectContext {
-        persistentContainer.viewContext
+    init(context: NSManagedObjectContext) {
+        self.context = context
     }
     
     
-    func deleteCachedWeather() throws {
+    func deleteWeather() throws {
         try context.performAndWait {
             let cacheEntities = try context.fetch(CacheEntity.fetchRequest())
             
@@ -51,7 +40,6 @@ final class CoreDataWeatherStore: WeatherStore {
     }
     
     func insert(_ weathers: [Weather], timestamp: Date) throws {
-        
         try context.performAndWait {
             let cache = CacheEntity(context: context)
             cache.timestamp = timestamp
@@ -65,7 +53,7 @@ final class CoreDataWeatherStore: WeatherStore {
         
     }
     
-    func retrieve() throws -> CachedWeather? {
+    func retrieve() throws -> WeatherWithTimestamp {
         let fetchRequest: NSFetchRequest<CacheEntity> = CacheEntity.fetchRequest()
         
         let result = try context.fetch(fetchRequest)
@@ -74,7 +62,7 @@ final class CoreDataWeatherStore: WeatherStore {
             return first.toCachedWeather()
         }
         
-        return nil
+        return ([], nil)
     }
     
 }
