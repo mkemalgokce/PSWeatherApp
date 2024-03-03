@@ -22,8 +22,6 @@ final class CoreDataWeatherStore: WeatherStore {
                 fatalError("Loading of store failed \(error)")
             }
         }
-        
-        print("Container loaded. \(container.persistentStoreDescriptions)")
         return container
     }()
     
