@@ -8,6 +8,9 @@
 import Foundation
 
 protocol WeatherListViewModelDelegate: AnyObject {
+    
+    func didStartLoading()
+    
     func didFetchWeathers()
     func didFailToFetchWeathersData(_ error: Error)
     
@@ -21,7 +24,16 @@ protocol WeatherListViewModelDelegate: AnyObject {
 final class WeatherListViewModel {
     private var weathers: [Weather] = []
     
-    var filteredWeathers: [Weather] = []
+    private var filteredWeathers: [Weather] = []
+    
+    private var currentPage: Int = 0
+    private let itemsPerPage: Int = 20
+    
+    private var paginatedWeathers: [Weather] {
+        let endIndex = min((currentPage + 1) * itemsPerPage, weathers.count)
+        return Array(weathers[0 ..< endIndex])
+    }
+    
     
     private let weatherLoader: WeatherLoader
     private let favouriteManager: FavouriteManagerProtocol?
@@ -29,7 +41,7 @@ final class WeatherListViewModel {
     weak var delegate: WeatherListViewModelDelegate?
     
     func itemCount(isFiltering: Bool) -> Int {
-        isFiltering ? filteredWeathers.count : weathers.count
+        isFiltering ? filteredWeathers.count : paginatedWeathers.count
     }
     
     init(weatherLoader: WeatherLoader, favouriteManager: FavouriteManagerProtocol? = nil) {
@@ -38,7 +50,7 @@ final class WeatherListViewModel {
     }
     
     func weather(at indexPath: IndexPath) -> Weather {
-        weathers[indexPath.item]
+        paginatedWeathers[indexPath.item]
     }
     
     func filtered(at indexPath: IndexPath) -> Weather {
@@ -50,6 +62,7 @@ final class WeatherListViewModel {
     }
     
     func fetch() {
+        delegate?.didStartLoading()
         weatherLoader.load { [weak self] result in
             guard let self else { return }
             switch result {
@@ -63,6 +76,7 @@ final class WeatherListViewModel {
     }
     
     func addWeatherToFavourites(_ weather: Weather) {
+        delegate?.didStartLoading()
         do {
             try favouriteManager?.save(weather: weather)
             delegate?.didAddToFavourite()
@@ -72,6 +86,7 @@ final class WeatherListViewModel {
     }
     
     func removeWeatherFromFavourites(_ weather: Weather) {
+        delegate?.didStartLoading()
         do {
             try favouriteManager?.delete(weather: weather)
             delegate?.didRemoveToFavourite()
@@ -83,6 +98,12 @@ final class WeatherListViewModel {
     func filter(with input: String) {
         filteredWeathers = weathers.filter {
             $0.country.lowercased().contains(input.lowercased()) || $0.city.lowercased().contains(input.lowercased())
+        }
+    }
+    
+    func goToNextPage() {
+        if currentPage < weathers.count / itemsPerPage {
+            currentPage += 1
         }
     }
 }

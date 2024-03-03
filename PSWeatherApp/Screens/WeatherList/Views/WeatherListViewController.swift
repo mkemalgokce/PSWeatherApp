@@ -96,36 +96,71 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
         let weather = viewModel.weather(at: indexPath)
         presentWeatherDetails(weather)
     }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = scrollView.contentSize.height
+            let height = scrollView.bounds.height
+            
+            if offsetY > contentHeight - height {
+                viewModel.goToNextPage()
+                tableView.reloadData()
+            }
+        }
 }
 
 
 // MARK: - WeatherListViewModelDelegate methods
 extension WeatherListViewController: WeatherListViewModelDelegate {
+    func didStartLoading() {
+        showLoader()
+    }
+    
     func didAddToFavourite() {
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.hideLoader()
+        }
     }
     
     func didFailToAddFavourite(_ error: Error) {
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.hideLoader { [weak self] in
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
     }
     
     func didRemoveToFavourite() {
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.hideLoader()
+        }
     }
     
     func didFailToRemoveFavourite(_ error: Error) {
         
+        DispatchQueue.main.async { [weak self] in
+            self?.hideLoader { [weak self] in
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            }
+        }
+
     }
     
     
     func didFetchWeathers() {
         DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
+            self?.hideLoader { [weak self] in
+                self?.tableView.reloadData()
+            }
+            
         }
     }
     
     func didFailToFetchWeathersData(_ error: Error) {
-        showAlertOnMainThread(title: "Error", message: error.localizedDescription)
+        hideLoader { [weak self] in
+            self?.showAlertOnMainThread(title: "Error", message: error.localizedDescription)
+        }
+       
     }
     
     
