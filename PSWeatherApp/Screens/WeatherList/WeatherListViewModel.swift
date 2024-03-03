@@ -8,10 +8,12 @@
 import Foundation
 
 protocol WeatherListViewModelDelegate: AnyObject {
-    
+    func didFetchWeathers()
+    func didFailToFetchWeathersData(_ error: Error)
 }
 
 final class WeatherListViewModel {
+    private var weathers: [Weather] = []
     private let weatherLoader: WeatherLoader
     weak var delegate: WeatherListViewModelDelegate?
     
@@ -19,9 +21,16 @@ final class WeatherListViewModel {
         self.weatherLoader = RemoteWeatherLoader(url: .applicationDirectory, client: URLSessionHTTPClient(session: .shared))
     }
     
-    func update() {
-        weatherLoader.load { result in
-            
+    func fetch() {
+        weatherLoader.load { [weak self] result in
+            guard let self else { return }
+            switch result {
+                case .success(let weathers):
+                    self.weathers = weathers
+                    delegate?.didFetchWeathers()
+                case .failure(let error):
+                    delegate?.didFailToFetchWeathersData(error)
+            }
         }
     }
 }
