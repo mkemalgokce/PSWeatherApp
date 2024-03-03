@@ -29,11 +29,22 @@ final class WeatherListCell: UITableViewCell {
         return label
     }()
     
-    private let countryAndCityLabel: UILabel = {
+    private let countryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.text = "Turkey Istanbul"
+        label.font = .systemFont(ofSize: 32, weight: .heavy)
+        label.text = "Turkey"
+        label.textAlignment = .right
+        label.textColor = .customTitle.withAlphaComponent(0.9)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
+    private let cityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.text = "Istanbul"
         label.textAlignment = .right
         label.textColor = .customTitle.withAlphaComponent(0.9)
         label.adjustsFontSizeToFitWidth = true
@@ -98,7 +109,8 @@ final class WeatherListCell: UITableViewCell {
         
         containerView.addSubview(weatherImageView)
         containerView.addSubview(infoVStack)
-        containerView.addSubview(countryAndCityLabel)
+        containerView.addSubview(countryLabel)
+        containerView.addSubview(cityLabel)
         containerView.addSubview(temperatureLabel)
         containerView.addSubview(weatherDescriptionLabel)
         
@@ -119,18 +131,22 @@ final class WeatherListCell: UITableViewCell {
             weatherImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             
             weatherImageView.leadingAnchor.constraint(equalToSystemSpacingAfter: containerView.leadingAnchor, multiplier: 1),
-            weatherImageView.widthAnchor.constraint(equalToConstant: 70),
+            weatherImageView.widthAnchor.constraint(equalToConstant: 100),
             weatherImageView.heightAnchor.constraint(equalTo: weatherImageView.widthAnchor),
             
             temperatureLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: weatherImageView.trailingAnchor, multiplier: 2),
             temperatureLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             
-            countryAndCityLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            countryAndCityLabel.leadingAnchor.constraint(greaterThanOrEqualTo: temperatureLabel.trailingAnchor),
-            countryAndCityLabel.trailingAnchor.constraint(equalTo: infoVStack.trailingAnchor),
+            countryLabel.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            countryLabel.leadingAnchor.constraint(greaterThanOrEqualTo: temperatureLabel.trailingAnchor),
+            countryLabel.trailingAnchor.constraint(equalTo: infoVStack.trailingAnchor),
+            
+            cityLabel.topAnchor.constraint(equalTo: countryLabel.bottomAnchor),
+            cityLabel.leadingAnchor.constraint(equalTo: countryLabel.leadingAnchor, constant: 8),
+            cityLabel.trailingAnchor.constraint(equalTo: countryLabel.trailingAnchor),
             
             
-            infoVStack.topAnchor.constraint(equalTo: countryAndCityLabel.bottomAnchor, constant: 8),
+            infoVStack.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 8),
             infoVStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             
             weatherDescriptionLabel.topAnchor.constraint(equalTo: infoVStack.bottomAnchor, constant: 8),
@@ -144,9 +160,18 @@ final class WeatherListCell: UITableViewCell {
     
     func configure(with weather: Weather) {
         temperatureLabel.text = "\(weather.temperature)"
-        countryAndCityLabel.text = "\(weather.country)/\(weather.city)"
+        countryLabel.text = weather.country
+        cityLabel.text = weather.city
         humidityInfoView.text = String(weather.humidity)
         windSpeedInfoView.text = String(weather.windSpeed)
+        
+        weatherDescriptionLabel.text = weather.weatherDescription.rawValue.capitalizedFirstLetterOfEachWord()
+        weatherImageView.image = weather.weatherDescription.image()
+        containerView.backgroundColor = weather.weatherDescription.color()
+        
+        //TODO: Move color logic to different class
+        changeLabelColor(weather.weatherDescription.textColor())
+        changeTintColor(weather.weatherDescription.tintColor())
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -154,6 +179,19 @@ final class WeatherListCell: UITableViewCell {
         //if selected { animate() }
     }
     
+    func changeLabelColor(_ color: UIColor) {
+        temperatureLabel.textColor = color
+        weatherDescriptionLabel.textColor = color
+        countryLabel.textColor = color
+        cityLabel.textColor = color
+        humidityInfoView.labelColor = color
+        windSpeedInfoView.labelColor = color
+    }
+    
+    func changeTintColor(_ color: UIColor) {
+        humidityInfoView.tintColor = color
+        windSpeedInfoView.tintColor = color
+    }
 }
 
 @available (iOS 17, *)
