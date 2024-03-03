@@ -20,6 +20,10 @@ final class PSWeatherInfoItemView: UIView {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
+        
+        let config = UIImage.SymbolConfiguration(font: .systemFont(ofSize: 20, weight: .heavy))
+
+        view.preferredSymbolConfiguration = config
         view.layer.cornerRadius = 25.0
         return view
     }()
