@@ -68,7 +68,7 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
     }
     
     func didFailToFetchWeathersData(_ error: Error) {
-        print("Weathers fetched")
+        showAlertOnMainThread(title: "Error", message: error.localizedDescription)
     }
     
     
