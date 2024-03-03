@@ -18,7 +18,7 @@ final class WeatherListViewModel {
     weak var delegate: WeatherListViewModelDelegate?
     
     init(weatherLoader: WeatherLoader) {
-        self.weatherLoader = RemoteWeatherLoader(url: .applicationDirectory, client: URLSessionHTTPClient(session: .shared))
+        self.weatherLoader = weatherLoader
     }
     
     func fetch() {
