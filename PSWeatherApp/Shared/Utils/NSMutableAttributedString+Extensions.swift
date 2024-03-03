@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+extension NSMutableAttributedString {
+    convenience init(strings: [NSAttributedString]) {
+        self.init()
+        for string in strings {
+            append(string)
+        }
+    }
+}

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+extension Date {
+    
+    func getMonthAndDayString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        return dateFormatter.string(from: self)
+    }
+}

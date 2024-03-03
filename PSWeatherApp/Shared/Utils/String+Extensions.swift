@@ -13,4 +13,10 @@ extension String {
         let capitalizedWords = words.map { $0.prefix(1).capitalized + $0.dropFirst() }
         return capitalizedWords.joined(separator: " ")
     }
+    
+    func toDate(withFormat format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self)
+    }
 }
