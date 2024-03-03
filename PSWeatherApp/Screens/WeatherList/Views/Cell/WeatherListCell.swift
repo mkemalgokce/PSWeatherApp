@@ -40,14 +40,14 @@ final class WeatherListCell: UITableViewCell {
         return label
     }()
     
-    private let windSpeedInfoView: WeatherInfoItemView = {
-        let item = WeatherInfoItemView(title: "14.6", image: UIImage(systemName: "wind"))
+    private let windSpeedInfoView: PSWeatherInfoItemView = {
+        let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "wind"))
         item.labelColor = .customTitle
         return item
     }()
     
-    private let humidityInfoView: WeatherInfoItemView = {
-        let item = WeatherInfoItemView(title: "14.6", image: UIImage(systemName: "humidity"))
+    private let humidityInfoView: PSWeatherInfoItemView = {
+        let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "humidity"))
         item.labelColor = .customTitle
         return item
     }()

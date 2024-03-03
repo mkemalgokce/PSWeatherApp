@@ -1,5 +1,5 @@
 //
-//  WeatherInfoItemView.swift
+//  PSWeatherInfoItemView.swift
 //  PSWeatherApp
 //
 //  Created by Mustafa Kemal Gökçe on 3.03.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WeatherInfoItemView: UIView {
+final class PSWeatherInfoItemView: UIView {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ final class WeatherInfoItemView: UIView {
 
 @available(iOS 17, *)
 #Preview {
-    let view = WeatherInfoItemView(title: "Human", image: .actions)
+    let view = PSWeatherInfoItemView(title: "Human", image: .actions)
     view.labelColor = .red
     view.tintColor = .green
     return view
