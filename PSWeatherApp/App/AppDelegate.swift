@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func configureUI() {
         configureNavBar()
+        configureTabBar()
     }
     
     private func configureNavBar() {
@@ -30,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
     }
 
+    private func configureTabBar() {
+        UITabBar.appearance().backgroundColor = .customButton
+        UITabBar.appearance().barTintColor = .customButton
+        UITabBar.appearance().isTranslucent = false
+    }
 
 }
 
