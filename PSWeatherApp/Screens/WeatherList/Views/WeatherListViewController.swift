@@ -34,6 +34,15 @@ final class WeatherListViewController: UIViewController {
         viewModel.fetch()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        navigationItem.title = "Weathers"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode =  .always
+    }
+    
+
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -42,8 +51,8 @@ final class WeatherListViewController: UIViewController {
     private func presentDetails(with weather: Weather) {
         let viewModel = WeatherDetailViewModel(weather: weather)
         let viewController = WeatherDetailsViewController(viewModel: viewModel)
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .checkmark, style: .done, target: self, action: #selector(addToFavourites))
-        show(WeatherDetailsViewController(viewModel: viewModel), sender: self)
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star"), style: .done, target: self, action: #selector(addToFavourites))
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 
