@@ -27,5 +27,19 @@ extension ForecastEntity {
 }
 
 extension ForecastEntity : Identifiable {
-
+    func toForecast() -> Forecast {
+            guard let date, let weather_description, let weatherDescription = WeatherDescription(rawValue: weather_description) else { fatalError("Error on converting forecast entity to forecast!") }
+            return Forecast(date: date, temperature: Int(temperature), weatherDescription: weatherDescription, humidity: Int(humidity), windSpeed: wind_speed)
+        }
+        
+        static func create(from forecast: Forecast, context: NSManagedObjectContext) -> ForecastEntity {
+            let forecastEntity = ForecastEntity(context: context)
+            forecastEntity.date = forecast.date
+            forecastEntity.temperature = Double(forecast.temperature)
+            forecastEntity.humidity = Int16(forecast.humidity)
+            forecastEntity.wind_speed = forecast.windSpeed
+            forecastEntity.weather_description = forecast.weatherDescription.rawValue
+            
+            return forecastEntity
+        }
 }
