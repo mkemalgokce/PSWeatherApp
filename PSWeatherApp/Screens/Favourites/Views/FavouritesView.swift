@@ -23,7 +23,7 @@ final class FavouritesView: UIView {
     
     private func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(WeatherListCell.self, forCellReuseIdentifier: WeatherListCell.identifier)
+        tableView.register(FavouritesTableViewCell.self, forCellReuseIdentifier: FavouritesTableViewCell.identifier)
         tableView.backgroundColor = .customBackground
         tableView.separatorStyle = .none
         
