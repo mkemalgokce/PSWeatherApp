@@ -17,8 +17,16 @@ final class WeatherListViewModel {
     private let weatherLoader: WeatherLoader
     weak var delegate: WeatherListViewModelDelegate?
     
+    var itemCount: Int {
+        weathers.count
+    }
+    
     init(weatherLoader: WeatherLoader) {
         self.weatherLoader = weatherLoader
+    }
+    
+    func weather(at indexPath: IndexPath) -> Weather {
+        weathers[indexPath.item]
     }
     
     func fetch() {
