@@ -18,6 +18,10 @@ final class FavouritesViewModel {
     
     weak var delegate: FavouritesViewModelDelegate?
     
+    var itemCount: Int {
+        weathers.count
+    }
+    
     init(favouriteManager: FavouriteManagerProtocol) {
         self.favouriteManager = favouriteManager
     }
@@ -34,5 +38,9 @@ final class FavouritesViewModel {
                     delegate?.didFailToFetchWeathers(failure)
             }
         }
+    }
+    
+    func weather(at indexPath: IndexPath) -> Weather {
+        return weathers[indexPath.item]
     }
 }
