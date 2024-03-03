@@ -38,6 +38,20 @@ final class WeatherListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    private func presentDetails(with weather: Weather) {
+        let viewModel = WeatherDetailViewModel(weather: weather)
+        let viewController = WeatherDetailsViewController(viewModel: viewModel)
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: .checkmark, style: .done, target: self, action: #selector(addToFavourites))
+        show(WeatherDetailsViewController(viewModel: viewModel), sender: self)
+    }
+    
+
+    
+    @objc private func addToFavourites() {
+        
+    }
+    
 }
 
 // MARK: - UITableViewDatasource & UITableViewDelegate
@@ -55,7 +69,10 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let weather = viewModel.weather(at: indexPath)
+        presentDetails(with: weather)
+    }
 }
 
 
@@ -74,14 +91,14 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
     
 }
 
-@available(iOS 17, *)
-#Preview {
-    WeatherListViewController(
-        viewModel: WeatherListViewModel(
-            weatherLoader: RemoteWithLocalFallbackWeatherLoader(localLoader: LocalWeatherLoader(store: CoreDataWeatherStore(), currentDate: Date.init),
-                                                                remoteLoader: RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared)))
-            
-        )
-        
-    )
-}
+//@available(iOS 17, *)
+//#Preview {
+//    WeatherListViewController(
+//        viewModel: WeatherListViewModel(
+//            weatherLoader: RemoteWithLocalFallbackWeatherLoader(localLoader: LocalWeatherLoader(store: CoreDataWeatherStore(), currentDate: Date.init),
+//                                                                remoteLoader: RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared)))
+//            
+//        )
+//        
+//    )
+//}
