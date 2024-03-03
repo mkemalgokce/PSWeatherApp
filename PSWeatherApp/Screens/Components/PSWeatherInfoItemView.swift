@@ -32,6 +32,11 @@ final class PSWeatherInfoItemView: UIView {
         return stack
     }()
     
+    var text: String = "" {
+        didSet {
+            infoLabel.text = text
+        }
+    }
     var labelColor: UIColor = .black {
         didSet {
             infoLabel.textColor = labelColor

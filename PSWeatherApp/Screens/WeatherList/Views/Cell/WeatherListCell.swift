@@ -8,7 +8,7 @@
 import UIKit
 
 final class WeatherListCell: UITableViewCell {
-    static let identifier = "WeatherListCell"
+    static let identifier = "\(type(of: WeatherListCell.self))"
     
     private let weatherImageView: UIImageView = {
         let view = UIImageView()
@@ -137,13 +137,16 @@ final class WeatherListCell: UITableViewCell {
             weatherDescriptionLabel.trailingAnchor.constraint(equalTo: infoVStack.trailingAnchor),
             weatherDescriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor),
             
-            
-            
             bottomAnchor.constraint(equalToSystemSpacingBelow: weatherImageView.bottomAnchor, multiplier: 2),
             
-            
-            
         ])
+    }
+    
+    func configure(with weather: Weather) {
+        temperatureLabel.text = "\(weather.temperature)"
+        countryAndCityLabel.text = "\(weather.country)/\(weather.city)"
+        humidityInfoView.text = String(weather.humidity)
+        windSpeedInfoView.text = String(weather.windSpeed)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
