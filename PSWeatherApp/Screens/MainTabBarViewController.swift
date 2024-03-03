@@ -39,7 +39,7 @@ class MainTabBarViewController: UITabBarController {
     
     private func createTab(_ controller: UIViewController, title: String, image: UIImage?) -> UINavigationController {
         let navigationController = UINavigationController(rootViewController: controller)
-        controller.title = title.uppercased()
+        controller.title = title
         navigationController.tabBarItem.image = image
         navigationController.navigationBar.prefersLargeTitles = true
         return navigationController

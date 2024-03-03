@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -18,24 +19,47 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             weatherListViewController: makeWeatherListViewController(),
             favouritesViewController: makeFavouritesViewController()
         )
+        createFavouriteWeatherStore()
+        
         window?.makeKeyAndVisible()
     }
 
+    private lazy var context: NSManagedObjectContext = {
+        let container = NSPersistentContainer(name: "WeatherDataModel")
+        container.loadPersistentStores { (storeDescription, error) in
+            if let error = error {
+                fatalError("Loading of store failed \(error)")
+            }
+        }
+        return container.viewContext
+    }()
+    
+    private lazy var remoteWeatherLoader: RemoteWeatherLoader = {
+        let remoteWeatherLoader = RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared))
+        return remoteWeatherLoader
+    }()
+    
+    private lazy var localWeatherLoader: LocalWeatherLoader = {
+        let coreDataWeatherStore = CoreDataWeatherStore(context: context)
+        let localWeatherLoder = LocalWeatherLoader(store: coreDataWeatherStore, currentDate: Date.init)
+            return localWeatherLoder
+    }()
+    
     
     private func makeWeatherListViewController() -> WeatherListViewController {
-        let coreDataWeatherStore = CoreDataWeatherStore()
-        let localWeatherLoder = LocalWeatherLoader(store: coreDataWeatherStore, currentDate: Date.init)
-        let remoteWeatherLoader = RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared))
-        
-        let remoteWithLocalFallbackLoader = RemoteWithLocalFallbackWeatherLoader(localLoader: localWeatherLoder, remoteLoader: remoteWeatherLoader)
-        
+        let remoteWithLocalFallbackLoader = RemoteWithLocalFallbackWeatherLoader(localLoader: localWeatherLoader, remoteLoader: remoteWeatherLoader)
         let viewModel = WeatherListViewModel(weatherLoader: remoteWithLocalFallbackLoader)
         return WeatherListViewController(viewModel: viewModel)
     }
     
     private func makeFavouritesViewController() -> FavouritesViewController {
-        FavouritesViewController()
+        let favouritesViewModel = FavouritesViewModel(favouriteManager: FavouriteWeatherManager.shared)
+        return FavouritesViewController(viewModel: favouritesViewModel)
     }
     
+    private func createFavouriteWeatherStore() {
+        let store = FavouriteWeatherStore(context: context)
+        FavouriteWeatherManager.shared.addStore(store)
+    }
 }
 

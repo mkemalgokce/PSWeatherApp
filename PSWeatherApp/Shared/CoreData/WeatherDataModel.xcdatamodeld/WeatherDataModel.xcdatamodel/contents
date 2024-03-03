@@ -4,9 +4,28 @@
         <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="weather" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="cache" inverseEntity="WeatherEntity"/>
     </entity>
+    <entity name="FavouriteForecastEntity" representedClassName="FavouriteForecastEntity" syncable="YES">
+        <attribute name="date" attributeType="String"/>
+        <attribute name="humidity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weather_description" attributeType="String"/>
+        <attribute name="wind_speed" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavouriteWeatherEntity" inverseName="forecast" inverseEntity="FavouriteWeatherEntity"/>
+    </entity>
     <entity name="FavouritesEntity" representedClassName="FavouritesEntity" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="weather" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="favourites" inverseEntity="WeatherEntity"/>
+        <relationship name="weather" toMany="YES" deletionRule="Nullify" destinationEntity="FavouriteWeatherEntity" inverseName="favourite" inverseEntity="FavouriteWeatherEntity"/>
+    </entity>
+    <entity name="FavouriteWeatherEntity" representedClassName="FavouriteWeatherEntity" syncable="YES">
+        <attribute name="city" attributeType="String"/>
+        <attribute name="country" attributeType="String"/>
+        <attribute name="humidity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weather_description" attributeType="String"/>
+        <attribute name="wind_speed" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="favourite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavouritesEntity" inverseName="weather" inverseEntity="FavouritesEntity"/>
+        <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavouriteForecastEntity" inverseName="weather" inverseEntity="FavouriteForecastEntity"/>
     </entity>
     <entity name="ForecastEntity" representedClassName="ForecastEntity" syncable="YES">
         <attribute name="date" attributeType="String"/>
@@ -26,7 +45,6 @@
         <attribute name="weather_description" attributeType="String"/>
         <attribute name="wind_speed" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CacheEntity" inverseName="weather" inverseEntity="CacheEntity"/>
-        <relationship name="favourites" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavouritesEntity" inverseName="weather" inverseEntity="FavouritesEntity"/>
         <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="weather" inverseEntity="ForecastEntity"/>
     </entity>
 </model>
