@@ -30,6 +30,7 @@ final class FavouriteWeatherStore: FavouriteStore {
             let entity = FavouriteWeatherEntity.create(from: weather, context: context)
             favourite.addToWeather(entity)
         }else {
+            print("FAvourite not found")
             let favourites = FavouritesEntity(context: context)
             
             let favourite = FavouriteWeatherEntity.create(from: weather, context: context)
@@ -44,9 +45,11 @@ final class FavouriteWeatherStore: FavouriteStore {
         
         for favouriteEntity in favouriteEntities {
             guard let weathers = favouriteEntity.weather else { continue }
-            for weather in weathers {
-                if let weatherEntity = weather as? FavouriteWeatherEntity {
-                    try FavouriteWeatherEntity.delete(weatherEntity, context: context)
+            for entitiy in weathers {
+                if let weatherEntity = entitiy as? FavouriteWeatherEntity {
+                    if weatherEntity.toWeather() == weather {
+                        try FavouriteWeatherEntity.delete(weatherEntity, context: context)
+                    }
                 }
             }
         }
