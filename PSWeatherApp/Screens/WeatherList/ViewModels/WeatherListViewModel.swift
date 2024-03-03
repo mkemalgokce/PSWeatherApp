@@ -20,13 +20,16 @@ protocol WeatherListViewModelDelegate: AnyObject {
 
 final class WeatherListViewModel {
     private var weathers: [Weather] = []
+    
+    var filteredWeathers: [Weather] = []
+    
     private let weatherLoader: WeatherLoader
     private let favouriteManager: FavouriteManagerProtocol?
     
     weak var delegate: WeatherListViewModelDelegate?
     
-    var itemCount: Int {
-        weathers.count
+    func itemCount(isFiltering: Bool) -> Int {
+        isFiltering ? filteredWeathers.count : weathers.count
     }
     
     init(weatherLoader: WeatherLoader, favouriteManager: FavouriteManagerProtocol? = nil) {
@@ -36,6 +39,14 @@ final class WeatherListViewModel {
     
     func weather(at indexPath: IndexPath) -> Weather {
         weathers[indexPath.item]
+    }
+    
+    func filtered(at indexPath: IndexPath) -> Weather {
+        filteredWeathers[indexPath.item]
+    }
+    
+    func item(isFiltering: Bool, at indexPath: IndexPath) -> Weather {
+        isFiltering ? filteredWeathers[indexPath.item] : weathers[indexPath.item]
     }
     
     func fetch() {
@@ -66,6 +77,12 @@ final class WeatherListViewModel {
             delegate?.didRemoveToFavourite()
         }catch {
             delegate?.didFailToRemoveFavourite(error)
+        }
+    }
+    
+    func filter(with input: String) {
+        filteredWeathers = weathers.filter {
+            $0.country.lowercased().contains(input.lowercased()) || $0.city.lowercased().contains(input.lowercased())
         }
     }
 }

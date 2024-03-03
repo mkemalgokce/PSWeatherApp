@@ -10,9 +10,12 @@ import UIKit
 final class WeatherListView: UIView {
     let tableView = UITableView()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     init() {
         super.init(frame: .zero)
         configureTableView()
+        configureSearchController()
         backgroundColor = .customBackground
     }
     
@@ -38,5 +41,10 @@ final class WeatherListView: UIView {
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
+    }
+    
+    private func configureSearchController() {
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Country or City"
     }
 }

@@ -15,8 +15,13 @@ final class WeatherListViewController: UIViewController {
         weatherListView.tableView
     }
     
+    private var searchController: UISearchController  {
+        weatherListView.searchController
+    }
+    
     override func loadView() {
         view = weatherListView
+
     }
     
     init(viewModel: WeatherListViewModel) {
@@ -30,22 +35,32 @@ final class WeatherListViewController: UIViewController {
     
     override func viewDidLoad() {
         setupTableView()
+        setupSearchController()
         viewModel.delegate = self
         viewModel.fetch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        
         navigationItem.title = "Weathers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode =  .always
     }
     
-
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    private func setupSearchController() {
+        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     private func presentWeatherDetails(_ weather: Weather) {
@@ -65,7 +80,7 @@ final class WeatherListViewController: UIViewController {
 // MARK: - UITableViewDatasource & UITableViewDelegate
 extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.itemCount
+        viewModel.itemCount(isFiltering: isFiltering())
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,7 +88,7 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
         else {
             fatalError("Invaid cell")
         }
-        cell.configure(with: viewModel.weather(at: indexPath))
+        cell.configure(with: viewModel.item(isFiltering: isFiltering(), at: indexPath))
         return cell
     }
     
@@ -102,7 +117,6 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
         
     }
     
-
     
     func didFetchWeathers() {
         DispatchQueue.main.async { [weak self] in
@@ -117,14 +131,24 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
     
 }
 
-//@available(iOS 17, *)
-//#Preview {
-//    WeatherListViewController(
-//        viewModel: WeatherListViewModel(
-//            weatherLoader: RemoteWithLocalFallbackWeatherLoader(localLoader: LocalWeatherLoader(store: CoreDataWeatherStore(), currentDate: Date.init),
-//                                                                remoteLoader: RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared)))
-//            
-//        )
-//        
-//    )
-//}
+// MARK: - UISearchControllerDelegate methods
+extension WeatherListViewController: UISearchControllerDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text!)
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    func filterContentForSearchText(_ searchText: String) {
+        viewModel.filter(with: searchText)
+        tableView.reloadData()
+    }
+    
+    
+}
