@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23D60" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CacheEntity" representedClassName="CacheEntity" syncable="YES">
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="weather" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="cache" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="FavouritesEntity" representedClassName="FavouritesEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="weather" toMany="YES" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="favourites" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="ForecastEntity" representedClassName="ForecastEntity" syncable="YES">
+        <attribute name="date" attributeType="String"/>
+        <attribute name="humidity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weather_description" attributeType="String"/>
+        <attribute name="wind_speed" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="weather" maxCount="1" deletionRule="Nullify" destinationEntity="WeatherEntity" inverseName="forecast" inverseEntity="WeatherEntity"/>
+    </entity>
+    <entity name="WeatherEntity" representedClassName="WeatherEntity" syncable="YES">
+        <attribute name="city" attributeType="String"/>
+        <attribute name="country" attributeType="String"/>
+        <attribute name="humidity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="weather_description" attributeType="String"/>
+        <attribute name="wind_speed" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="cache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CacheEntity" inverseName="weather" inverseEntity="CacheEntity"/>
+        <relationship name="favourites" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavouritesEntity" inverseName="weather" inverseEntity="FavouritesEntity"/>
+        <relationship name="forecast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForecastEntity" inverseName="weather" inverseEntity="ForecastEntity"/>
+    </entity>
+</model>
