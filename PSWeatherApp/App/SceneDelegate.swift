@@ -13,16 +13,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = WeatherListViewController(
-            viewModel: WeatherListViewModel(
-                weatherLoader: RemoteWithLocalFallbackWeatherLoader(localLoader: LocalWeatherLoader(store: CoreDataWeatherStore(), currentDate: Date.init),
-                                                                    remoteLoader: RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared)))
-                
-            )
-            
+        
+        window?.rootViewController = MainTabBarViewController(
+            weatherListViewController: makeWeatherListViewController(),
+            favouritesViewController: makeFavouritesViewController()
         )
         window?.makeKeyAndVisible()
     }
 
+    
+    private func makeWeatherListViewController() -> WeatherListViewController {
+        let coreDataWeatherStore = CoreDataWeatherStore()
+        let localWeatherLoder = LocalWeatherLoader(store: coreDataWeatherStore, currentDate: Date.init)
+        let remoteWeatherLoader = RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared))
+        
+        let remoteWithLocalFallbackLoader = RemoteWithLocalFallbackWeatherLoader(localLoader: localWeatherLoder, remoteLoader: remoteWeatherLoader)
+        
+        let viewModel = WeatherListViewModel(weatherLoader: remoteWithLocalFallbackLoader)
+        return WeatherListViewController(viewModel: viewModel)
+    }
+    
+    private func makeFavouritesViewController() -> FavouritesViewController {
+        FavouritesViewController()
+    }
+    
 }
 
