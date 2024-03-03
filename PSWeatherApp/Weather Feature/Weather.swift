@@ -9,6 +9,10 @@ import Foundation
 
 // MARK: - Weather
 public struct Weather: Equatable, Codable {
+    public static func == (lhs: Weather, rhs: Weather) -> Bool {
+        lhs.city == rhs.city && lhs.country == rhs.country && lhs.id == rhs.id
+    }
+    
     public let id: Int
     public let city, country: String
     public let temperature: Double
@@ -36,10 +40,11 @@ public struct Weather: Equatable, Codable {
         self.windSpeed = windSpeed
         self.forecast = forecast
     }
+    
 }
 
 // MARK: - Forecast
-public struct Forecast: Equatable, Codable {
+public struct Forecast: Codable {
     public let date: String
     public let temperature: Int
     public let weatherDescription: WeatherDescription
