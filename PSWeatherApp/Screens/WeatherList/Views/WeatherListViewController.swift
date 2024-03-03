@@ -30,7 +30,8 @@ final class WeatherListViewController: UIViewController {
     
     override func viewDidLoad() {
         setupTableView()
-        //viewModel.fetch()
+        viewModel.delegate = self
+        viewModel.fetch()
     }
     
     private func setupTableView() {
@@ -42,14 +43,15 @@ final class WeatherListViewController: UIViewController {
 // MARK: - UITableViewDatasource & UITableViewDelegate
 extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        viewModel.itemCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherListCell.identifier, for: indexPath) as? WeatherListCell
         else {
-            return UITableViewCell()
+            fatalError("Invaid cell")
         }
+        cell.configure(with: viewModel.weather(at: indexPath))
         return cell
     }
     
@@ -60,11 +62,13 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
 // MARK: - WeatherListViewModelDelegate methods
 extension WeatherListViewController: WeatherListViewModelDelegate {
     func didFetchWeathers() {
-        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     func didFailToFetchWeathersData(_ error: Error) {
-        
+        print("Weathers fetched")
     }
     
     
