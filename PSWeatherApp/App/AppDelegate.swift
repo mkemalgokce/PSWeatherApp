@@ -32,8 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func configureTabBar() {
-        UITabBar.appearance().backgroundColor = .customButton
-        UITabBar.appearance().barTintColor = .customButton
+        UITabBar.appearance().backgroundColor = .customBackground
+        UITabBar.appearance().barTintColor = .customBackground
+        UITabBar.appearance().tintColor = .customTitle
+        UITabBar.appearance().unselectedItemTintColor = .unselected.withAlphaComponent(0.4)
         UITabBar.appearance().isTranslucent = false
     }
 

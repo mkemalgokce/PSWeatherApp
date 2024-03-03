@@ -59,7 +59,7 @@
 		55E36CF92B94D99000CC9AEC /* NSMutableAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36CF82B94D99000CC9AEC /* NSMutableAttributedString+Extensions.swift */; };
 		55E36CFB2B94DAB200CC9AEC /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36CFA2B94DAB200CC9AEC /* Date+Extensions.swift */; };
 		55E36CFF2B94EC5100CC9AEC /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36CFE2B94EC5100CC9AEC /* FavouritesView.swift */; };
-		55E36D022B94EC8E00CC9AEC /* FavouriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36D012B94EC8E00CC9AEC /* FavouriteCell.swift */; };
+		55E36D022B94EC8E00CC9AEC /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36D012B94EC8E00CC9AEC /* FavouritesTableViewCell.swift */; };
 		55E36D042B94ED8900CC9AEC /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36D032B94ED8900CC9AEC /* FavouritesViewModel.swift */; };
 		55E36D062B94EF8C00CC9AEC /* FavouriteWeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36D052B94EF8C00CC9AEC /* FavouriteWeatherStore.swift */; };
 		55E36D082B94F66500CC9AEC /* FavouriteWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36D072B94F66500CC9AEC /* FavouriteWeatherManager.swift */; };
@@ -139,7 +139,7 @@
 		55E36CF82B94D99000CC9AEC /* NSMutableAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		55E36CFA2B94DAB200CC9AEC /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		55E36CFE2B94EC5100CC9AEC /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
-		55E36D012B94EC8E00CC9AEC /* FavouriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteCell.swift; sourceTree = "<group>"; };
+		55E36D012B94EC8E00CC9AEC /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
 		55E36D032B94ED8900CC9AEC /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
 		55E36D052B94EF8C00CC9AEC /* FavouriteWeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteWeatherStore.swift; sourceTree = "<group>"; };
 		55E36D072B94F66500CC9AEC /* FavouriteWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteWeatherManager.swift; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 		55E36D002B94EC8200CC9AEC /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				55E36D012B94EC8E00CC9AEC /* FavouriteCell.swift */,
+				55E36D012B94EC8E00CC9AEC /* FavouritesTableViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -627,7 +627,7 @@
 				55E36D082B94F66500CC9AEC /* FavouriteWeatherManager.swift in Sources */,
 				55E36CD12B94946700CC9AEC /* PSWeatherInfoItemView.swift in Sources */,
 				55E36C472B93AEC300CC9AEC /* RemoteWithLocalFallbackWeatherLoader.swift in Sources */,
-				55E36D022B94EC8E00CC9AEC /* FavouriteCell.swift in Sources */,
+				55E36D022B94EC8E00CC9AEC /* FavouritesTableViewCell.swift in Sources */,
 				55E36C452B93AAE900CC9AEC /* WeatherListViewModel.swift in Sources */,
 				55E36C2F2B9363D700CC9AEC /* RemoteWeatherLoader.swift in Sources */,
 				5514053A2B9501B600503711 /* ForecastEntity+CoreDataClass.swift in Sources */,
