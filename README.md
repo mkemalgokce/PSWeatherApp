@@ -12,6 +12,7 @@ This Weather App is a simple iOS application that allows users to check the late
 
 ## App Requirements
 - iOS 13.0+
+- Xcode 11.0+
 - Swift 5.0
 
 
