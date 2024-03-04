@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PSWeatherLoader
+import PSWeatherApp
 
 extension Weather {
     static func generate(id: Int, city: String, country: String) -> Weather {
