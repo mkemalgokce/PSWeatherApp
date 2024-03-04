@@ -7,6 +7,7 @@ This Weather App is a simple iOS application that allows users to check the late
 - Local Caching: Weather data is cached locally using CoreData to provide offline access and improve app performance.
 - Favorites Management: Users can add and remove their favorite locations to easily access weather forecasts for those locations.
 - Accurate Weather Forecasts: The app fetches weather data from reliable sources to provide users with up-to-date and accurate weather information.
+- Pagination: Pagination is implemented for efficient data loading, ensuring smooth navigation and performance when browsing through weather forecasts.
 - Dark Mode and Light Mode Support: The app seamlessly adapts to the user's preferred appearance, providing a comfortable viewing experience in both Dark Mode and Light Mode.
 - Apple Frameworks: The app is built entirely using Apple's frameworks and libraries, ensuring reliability and compatibility with iOS devices.
 
