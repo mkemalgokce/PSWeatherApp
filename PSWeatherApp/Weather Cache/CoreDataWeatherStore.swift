@@ -80,7 +80,7 @@ final class CoreDataWeatherStore: WeatherStore {
         
     }
     
-    func retrieve() throws -> WeatherWithTimestamp {
+    func retrieve() throws -> WeatherWithTimestamp? {
         let fetchRequest: NSFetchRequest<CacheEntity> = CacheEntity.fetchRequest()
         
         let result = try context.fetch(fetchRequest)

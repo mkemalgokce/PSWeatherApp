@@ -12,6 +12,6 @@ typealias WeatherWithTimestamp = (weather: [Weather], timestamp: Date?)
 protocol WeatherStore {
     func deleteWeather() throws
     func insert(_ weather: [Weather], timestamp: Date) throws
-    func retrieve() throws -> WeatherWithTimestamp
+    func retrieve() throws -> WeatherWithTimestamp?
 }
 

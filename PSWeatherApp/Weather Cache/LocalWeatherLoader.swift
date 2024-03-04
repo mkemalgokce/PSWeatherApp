@@ -11,11 +11,7 @@ import Foundation
 final class LocalWeatherLoader: WeatherLoader {
     private let store: WeatherStore
     private let currentDate: () -> Date
-    
-    enum Error: Swift.Error {
-        case cacheNotFound
-    }
-    
+        
     typealias Result = LoadWeatherResult
     
     init(store: WeatherStore, currentDate: @escaping () -> Date) {
@@ -24,10 +20,12 @@ final class LocalWeatherLoader: WeatherLoader {
     }
     
     func load(completion: @escaping (Result) -> Void) {
-        if let cache = try? store.retrieve(), WeatherCachePolicy.validate(cache.timestamp ?? Date(), against: currentDate()) {
-            completion(.success(cache.weather))
-        }else {
-            completion(.failure(Error.cacheNotFound))
+        do {
+            if let cache = try store.retrieve(), WeatherCachePolicy.validate(cache.timestamp ?? Date(), against: currentDate()) {
+                completion(.success(cache.weather))
+            }
+        }catch {
+            completion(.failure(error))
         }
     }
     
@@ -44,7 +42,7 @@ extension LocalWeatherLoader {
     public func validateCache() throws {
         do {
             let cache = try store.retrieve()
-            if !WeatherCachePolicy.validate(cache.timestamp ?? Date(), against: currentDate()) {
+            if !WeatherCachePolicy.validate(cache?.timestamp ?? Date(), against: currentDate()) {
                 throw InvalidCache()
             }
         } catch {
