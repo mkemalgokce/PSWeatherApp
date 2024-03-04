@@ -169,7 +169,6 @@ final class WeatherListCell: UITableViewCell {
         weatherImageView.image = weather.weatherDescription.image()
         containerView.backgroundColor = weather.weatherDescription.color()
         
-        //TODO: Move color logic to different class
         changeLabelColor(weather.weatherDescription.textColor())
         changeTintColor(weather.weatherDescription.tintColor())
     }

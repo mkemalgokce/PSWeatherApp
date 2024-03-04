@@ -94,12 +94,10 @@ extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
     }
     
     func didFailToAddFavourite(_ error: Error) {
-        print("Fail add: \(error)")
         showAlertOnMainThread(title: "Error", message: error.localizedDescription)
     }
     
     func didRemoveToFavourite() {
-        print("Removed")
         DispatchQueue.main.async { [weak self] in
             self?.configureNavigationBar()
             
@@ -107,7 +105,6 @@ extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
     }
     
     func didFailToRemoveFavourite(_ error: Error) {
-        print("Fail remove: \(error)")
         showAlertOnMainThread(title: "Error", message: error.localizedDescription)
     }
     

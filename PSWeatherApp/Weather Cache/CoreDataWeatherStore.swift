@@ -32,6 +32,7 @@ final class CoreDataWeatherStore: WeatherStore {
                             try WeatherEntity.delete(weatherEntity, context: context)
                         }
                     }
+                    print("Cache deleted...")
                     context.delete(cacheEntity)
                 }
                 
@@ -47,6 +48,7 @@ final class CoreDataWeatherStore: WeatherStore {
                         try WeatherEntity.delete(weatherEntity, context: context)
                     }
                 }
+                print("Cache deleted....")
                 context.delete(cacheEntity)
             }
             

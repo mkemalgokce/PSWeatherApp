@@ -92,6 +92,7 @@ extension WeatherEntity : Identifiable {
                     context.delete(forecast)
                 }
             }
+            print("Cache deleted...")
             context.delete(entity)
         }
 }
