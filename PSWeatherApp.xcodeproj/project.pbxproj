@@ -141,6 +141,7 @@
 		5514058D2B95E4EA00503711 /* MockFavouriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavouriteManager.swift; sourceTree = "<group>"; };
 		5514058F2B95E55200503711 /* MockWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherLoader.swift; sourceTree = "<group>"; };
 		551405912B95E58000503711 /* PSWeatherApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PSWeatherApp.xctestplan; sourceTree = "<group>"; };
+		551405922B95E6F800503711 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		55E36BF12B93625C00CC9AEC /* PSWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E36BF42B93625C00CC9AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 		55E36BE82B93625C00CC9AEC = {
 			isa = PBXGroup;
 			children = (
+				551405922B95E6F800503711 /* README.md */,
 				551405912B95E58000503711 /* PSWeatherApp.xctestplan */,
 				5514055D2B95B5F700503711 /* PSWeatherLoaderEndToEndTests.xctestplan */,
 				55E36BF32B93625C00CC9AEC /* PSWeatherApp */,
