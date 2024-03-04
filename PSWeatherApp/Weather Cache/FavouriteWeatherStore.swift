@@ -30,7 +30,6 @@ final class FavouriteWeatherStore: FavouriteStore {
             let entity = FavouriteWeatherEntity.create(from: weather, context: context)
             favourite.addToWeather(entity)
         }else {
-            print("FAvourite not found")
             let favourites = FavouritesEntity(context: context)
             
             let favourite = FavouriteWeatherEntity.create(from: weather, context: context)

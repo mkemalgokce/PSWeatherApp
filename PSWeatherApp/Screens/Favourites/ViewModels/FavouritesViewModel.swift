@@ -28,7 +28,6 @@ final class FavouritesViewModel {
     
     func fetch() {
         favouriteManager.load { [weak self] result in
-            print("Result: \(result)")
             guard let self else { return }
             switch result {
                 case .success(let success):
