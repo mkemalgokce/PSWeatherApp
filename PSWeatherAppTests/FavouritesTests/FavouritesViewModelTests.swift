@@ -51,23 +51,5 @@ class FavouritesViewModelTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
-    private class MockFavouriteManager: FavouriteManagerProtocol {
-        var mockLoadResult: Result<[Weather], Error>?
         
-        func load(completion: @escaping (Result<[Weather], Error>) -> Void) {
-            if let result = mockLoadResult {
-                completion(result)
-            }
-        }
-        
-        func save(weather: Weather) throws {}
-        
-        func delete(weather: Weather) throws {}
-        
-        func isInStore(_ weather: Weather) throws -> Bool {
-            return false
-        }
-    }
-    
 }

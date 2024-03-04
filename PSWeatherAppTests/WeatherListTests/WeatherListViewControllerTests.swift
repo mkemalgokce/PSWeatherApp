@@ -64,7 +64,7 @@ class WeatherListViewControllerTests: XCTestCase {
         
         viewModel.fetch()
        
-        for (i,visibleCell) in tableView.visibleCells.enumerated() {
+        for (i,_) in tableView.visibleCells.enumerated() {
             let cell = cell(on: index(i), from: tableView)
             let weather = weathers[i]
             

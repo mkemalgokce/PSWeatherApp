@@ -8,7 +8,6 @@
 import XCTest
 @testable import PSWeatherApp
 
-
 class WeatherListViewModelTests: XCTestCase {
     
     var weatherLoader: MockWeatherLoader!
@@ -87,34 +86,3 @@ class WeatherListViewModelTests: XCTestCase {
         }
     }
 }
-
-class MockWeatherLoader: WeatherLoader {
-    var mockResult: Result<[Weather], Error>?
-    
-    func load(completion: @escaping (Result<[Weather], Error>) -> Void) {
-        if let result = mockResult {
-            completion(result)
-        }
-    }
-}
-
-class MockFavouriteManager: FavouriteManagerProtocol {
-    var savedWeather: Weather?
-    
-    func save(weather: Weather) throws {
-        savedWeather = weather
-    }
-    
-    func delete(weather: Weather) throws {
-        savedWeather = nil
-    }
-    
-    func load(completion: @escaping (Result<[PSWeatherApp.Weather], Error>) -> Void) {
-        
-    }
-    
-    func isInStore(_ weather: PSWeatherApp.Weather) throws -> Bool {
-        savedWeather == weather
-    }
-}
-

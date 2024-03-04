@@ -37,6 +37,8 @@
 		5514056F2B95C21200503711 /* FavouritesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514056E2B95C21200503711 /* FavouritesViewModelTests.swift */; };
 		551405712B95C30F00503711 /* WeatherListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */; };
 		5514058C2B95E1E600503711 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514058B2B95E1E600503711 /* UIColor+Extensions.swift */; };
+		5514058E2B95E4EA00503711 /* MockFavouriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514058D2B95E4EA00503711 /* MockFavouriteManager.swift */; };
+		551405902B95E55200503711 /* MockWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514058F2B95E55200503711 /* MockWeatherLoader.swift */; };
 		55E36BF52B93625C00CC9AEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF42B93625C00CC9AEC /* AppDelegate.swift */; };
 		55E36BF72B93625C00CC9AEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */; };
 		55E36BF92B93625C00CC9AEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF82B93625C00CC9AEC /* MainTabBarViewController.swift */; };
@@ -136,6 +138,9 @@
 		5514056E2B95C21200503711 /* FavouritesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModelTests.swift; sourceTree = "<group>"; };
 		551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewControllerTests.swift; sourceTree = "<group>"; };
 		5514058B2B95E1E600503711 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		5514058D2B95E4EA00503711 /* MockFavouriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavouriteManager.swift; sourceTree = "<group>"; };
+		5514058F2B95E55200503711 /* MockWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherLoader.swift; sourceTree = "<group>"; };
+		551405912B95E58000503711 /* PSWeatherApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PSWeatherApp.xctestplan; sourceTree = "<group>"; };
 		55E36BF12B93625C00CC9AEC /* PSWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E36BF42B93625C00CC9AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +239,8 @@
 				551405462B95B3BF00503711 /* XCTestCase+TestingUtils.swift */,
 				551405442B95B3BF00503711 /* XCTests+MemoryLeakTrackingUtils.swift */,
 				551405652B95BAF200503711 /* Date+Utils.swift */,
+				5514058D2B95E4EA00503711 /* MockFavouriteManager.swift */,
+				5514058F2B95E55200503711 /* MockWeatherLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -283,6 +290,7 @@
 		55E36BE82B93625C00CC9AEC = {
 			isa = PBXGroup;
 			children = (
+				551405912B95E58000503711 /* PSWeatherApp.xctestplan */,
 				5514055D2B95B5F700503711 /* PSWeatherLoaderEndToEndTests.xctestplan */,
 				55E36BF32B93625C00CC9AEC /* PSWeatherApp */,
 				55E36C0A2B93625E00CC9AEC /* PSWeatherAppTests */,
@@ -807,11 +815,13 @@
 				5514056F2B95C21200503711 /* FavouritesViewModelTests.swift in Sources */,
 				5514054B2B95B3BF00503711 /* Weather+Utils.swift in Sources */,
 				551405692B95BD1D00503711 /* WeatherListViewModelTests.swift in Sources */,
+				5514058E2B95E4EA00503711 /* MockFavouriteManager.swift in Sources */,
 				5514056C2B95C0B600503711 /* WeatherDetailsViewModelTests.swift in Sources */,
 				551405642B95B69100503711 /* LocalWeatherLoaderTests.swift in Sources */,
 				551405712B95C30F00503711 /* WeatherListViewControllerTests.swift in Sources */,
 				5514054A2B95B3BF00503711 /* XCTestCase+TestingUtils.swift in Sources */,
 				55E36C0C2B93625E00CC9AEC /* PSWeatherAppTests.swift in Sources */,
+				551405902B95E55200503711 /* MockWeatherLoader.swift in Sources */,
 				551405482B95B3BF00503711 /* XCTests+MemoryLeakTrackingUtils.swift in Sources */,
 				551405662B95BAF200503711 /* Date+Utils.swift in Sources */,
 				551405492B95B3BF00503711 /* Error+Utils.swift in Sources */,

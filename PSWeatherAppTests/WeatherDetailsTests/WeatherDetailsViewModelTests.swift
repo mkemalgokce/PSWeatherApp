@@ -47,28 +47,6 @@ class WeatherDetailViewModelTests: XCTestCase {
 
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
-    private class MockFavouriteManager: FavouriteManagerProtocol {
-        var savedWeather: Weather?
-        var mockIsInStoreResult: Bool = false
-        
-        func save(weather: Weather) throws {
-            savedWeather = weather
-        }
-        
-        func delete(weather: Weather) throws {
-            savedWeather = nil
-        }
-        
-        func isInStore(_ weather: Weather) throws -> Bool {
-            savedWeather == weather
-        }
-        
-        func load(completion: @escaping (Result<[PSWeatherApp.Weather], Error>) -> Void) {
-            
-        }
-    }
-    
 }
 
 
