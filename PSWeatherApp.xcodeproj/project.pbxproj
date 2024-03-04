@@ -36,6 +36,7 @@
 		5514056C2B95C0B600503711 /* WeatherDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514056B2B95C0B600503711 /* WeatherDetailsViewModelTests.swift */; };
 		5514056F2B95C21200503711 /* FavouritesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514056E2B95C21200503711 /* FavouritesViewModelTests.swift */; };
 		551405712B95C30F00503711 /* WeatherListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */; };
+		5514058C2B95E1E600503711 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514058B2B95E1E600503711 /* UIColor+Extensions.swift */; };
 		55E36BF52B93625C00CC9AEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF42B93625C00CC9AEC /* AppDelegate.swift */; };
 		55E36BF72B93625C00CC9AEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */; };
 		55E36BF92B93625C00CC9AEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF82B93625C00CC9AEC /* MainTabBarViewController.swift */; };
@@ -134,6 +135,7 @@
 		5514056B2B95C0B600503711 /* WeatherDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		5514056E2B95C21200503711 /* FavouritesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModelTests.swift; sourceTree = "<group>"; };
 		551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewControllerTests.swift; sourceTree = "<group>"; };
+		5514058B2B95E1E600503711 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		55E36BF12B93625C00CC9AEC /* PSWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E36BF42B93625C00CC9AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -362,7 +364,6 @@
 			children = (
 				55E36C2A2B93635E00CC9AEC /* Weather.swift */,
 				55E36C2C2B93638000CC9AEC /* WeatherLoader.swift */,
-				55E36C462B93AEC300CC9AEC /* RemoteWithLocalFallbackWeatherLoader.swift */,
 			);
 			path = "Weather Feature";
 			sourceTree = "<group>";
@@ -410,6 +411,7 @@
 				55E36C312B93647900CC9AEC /* HTTPClient.swift */,
 				55E36C6B2B93D0EE00CC9AEC /* URLSessionHTTPClient.swift */,
 				55E36D072B94F66500CC9AEC /* FavouriteWeatherManager.swift */,
+				55E36C462B93AEC300CC9AEC /* RemoteWithLocalFallbackWeatherLoader.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -503,6 +505,7 @@
 				55E36CDE2B94A0FD00CC9AEC /* WeatherDescription+Color.swift */,
 				55E36CE32B94B13D00CC9AEC /* UIView+AnimationUtils.swift */,
 				55E36CF62B94CF1E00CC9AEC /* UIView+Gradient.swift */,
+				5514058B2B95E1E600503711 /* UIColor+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				55E36C4C2B93C6DC00CC9AEC /* WeatherDataModel.xcdatamodeld in Sources */,
 				55E36CE22B94A8D700CC9AEC /* String+Extensions.swift in Sources */,
 				55E36CD62B94965700CC9AEC /* WeatherListCell.swift in Sources */,
+				5514058C2B95E1E600503711 /* UIColor+Extensions.swift in Sources */,
 				55E36CDD2B949C5300CC9AEC /* UIViewController+Alert.swift in Sources */,
 				55E36C3A2B9365BA00CC9AEC /* WeatherStore.swift in Sources */,
 				55E36CFF2B94EC5100CC9AEC /* FavouritesView.swift in Sources */,
