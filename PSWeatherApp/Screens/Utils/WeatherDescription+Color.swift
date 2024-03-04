@@ -57,7 +57,7 @@ extension WeatherDescription {
     func textColor() -> UIColor {
         switch self {
             case .sunny:
-                return .gray
+                return .unselected
             default:
                 return .customTitle
         }
@@ -66,9 +66,9 @@ extension WeatherDescription {
     func tintColor() -> UIColor {
         switch self {
             case .sunny:
-                return .systemBlue
+                return .unselected
             default:
-                return .systemGray
+                return .customSecond
         }
     }
 }
