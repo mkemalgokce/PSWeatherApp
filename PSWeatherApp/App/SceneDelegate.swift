@@ -31,12 +31,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 fatalError("Loading of store failed \(error)")
             }
         }
-        
         return container.viewContext
     }()
     
     private lazy var remoteWeatherLoader: RemoteWeatherLoader = {
-        let remoteWeatherLoader = RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: .shared))
+        let remoteWeatherLoader = RemoteWeatherLoader(url: WeatherEndPoint.get.url, client: URLSessionHTTPClient(session: URLSession(configuration: .ephemeral)))
         return remoteWeatherLoader
     }()
     
