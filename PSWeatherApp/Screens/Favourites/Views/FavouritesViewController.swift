@@ -75,7 +75,6 @@ extension FavouritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(weather: viewModel.weather(at: indexPath))
-        cell.update()
         return cell
     }
     

@@ -24,7 +24,7 @@ final class LocalWeatherLoader: WeatherLoader {
     }
     
     func load(completion: @escaping (Result) -> Void) {
-        if let cache = try? store.retrieve(), WeatherCachePolicy.validate(cache.timestamp ?? Date.now, against: currentDate()) {
+        if let cache = try? store.retrieve(), WeatherCachePolicy.validate(cache.timestamp ?? Date(), against: currentDate()) {
             completion(.success(cache.weather))
         }else {
             completion(.failure(Error.cacheNotFound))
@@ -44,7 +44,7 @@ extension LocalWeatherLoader {
     public func validateCache() throws {
         do {
             let cache = try store.retrieve()
-            if !WeatherCachePolicy.validate(cache.timestamp ?? Date.now, against: currentDate()) {
+            if !WeatherCachePolicy.validate(cache.timestamp ?? Date(), against: currentDate()) {
                 throw InvalidCache()
             }
         } catch {

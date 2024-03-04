@@ -70,13 +70,11 @@ final class WeatherDetailsViewController: UIViewController {
 extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
     
     func didStartLoading() {
-        
     }
     
     func didFinishLoading() {
         
     }
-    
     
     func didFailToCheckFavourite(_ error: Error) {
         showAlertOnMainThread(title: "Error", message: error.localizedDescription)
@@ -89,7 +87,6 @@ extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
     }
     
     func didAddToFavourite() {
-        print("Added")
         DispatchQueue.main.async { [weak self] in
             self?.configureNavigationBar()
         }

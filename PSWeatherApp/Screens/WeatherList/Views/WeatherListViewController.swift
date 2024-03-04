@@ -86,7 +86,7 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherListCell.identifier, for: indexPath) as? WeatherListCell
         else {
-            fatalError("Invaid cell")
+            return UITableViewCell()
         }
         cell.configure(with: viewModel.item(isFiltering: isFiltering(), at: indexPath))
         return cell
@@ -146,7 +146,6 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
 
     }
     
-    
     func didFetchWeathers() {
         DispatchQueue.main.async { [weak self] in
             self?.hideLoader { [weak self] in
@@ -162,7 +161,6 @@ extension WeatherListViewController: WeatherListViewModelDelegate {
         }
        
     }
-    
     
 }
 

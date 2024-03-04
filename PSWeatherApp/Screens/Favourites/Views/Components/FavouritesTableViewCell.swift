@@ -42,6 +42,8 @@ final class FavouritesTableViewCell: UITableViewCell {
             .init(string: "\(weather.country)\n", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .bold)]),
             .init(string: "\(weather.city)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .semibold)]),
         ])
+        
+        containerView.backgroundColor = randomColor()
     }
     
     private func setupView() {
@@ -67,9 +69,6 @@ final class FavouritesTableViewCell: UITableViewCell {
         ])
     }
     
-    func update() {
-        containerView.backgroundColor = randomColor()
-    }
     func randomColor() -> UIColor {
         let red = CGFloat.random(in: 0...1)
         let green = CGFloat.random(in: 0...1)

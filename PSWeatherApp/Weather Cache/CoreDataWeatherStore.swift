@@ -21,7 +21,23 @@ final class CoreDataWeatherStore: WeatherStore {
     
     
     func deleteWeather() throws {
-        try context.performAndWait {
+        if #available(iOS 15.0, *) {
+            try context.performAndWait {
+                let cacheEntities = try context.fetch(CacheEntity.fetchRequest())
+                
+                for cacheEntity in cacheEntities {
+                    guard let weathers = cacheEntity.weather else { continue }
+                    for weather in weathers {
+                        if let weatherEntity = weather as? WeatherEntity {
+                            try WeatherEntity.delete(weatherEntity, context: context)
+                        }
+                    }
+                    context.delete(cacheEntity)
+                }
+                
+                try context.save()
+            }
+        } else {
             let cacheEntities = try context.fetch(CacheEntity.fetchRequest())
             
             for cacheEntity in cacheEntities {
@@ -40,7 +56,18 @@ final class CoreDataWeatherStore: WeatherStore {
     }
     
     func insert(_ weathers: [Weather], timestamp: Date) throws {
-        try context.performAndWait {
+        if #available(iOS 15.0, *) {
+            try context.performAndWait {
+                let cache = CacheEntity(context: context)
+                cache.timestamp = timestamp
+                
+                for weather in weathers {
+                    cache.addToWeather(WeatherEntity.create(from: weather, context: context))
+                }
+                
+                try context.save()
+            }
+        } else {
             let cache = CacheEntity(context: context)
             cache.timestamp = timestamp
             
@@ -66,3 +93,4 @@ final class CoreDataWeatherStore: WeatherStore {
     }
     
 }
+
