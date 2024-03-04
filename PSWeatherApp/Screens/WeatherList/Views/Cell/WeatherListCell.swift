@@ -10,7 +10,7 @@ import UIKit
 final class WeatherListCell: UITableViewCell {
     static let identifier = "\(type(of: WeatherListCell.self))"
     
-    private let weatherImageView: UIImageView = {
+    let weatherImageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 25
@@ -20,7 +20,7 @@ final class WeatherListCell: UITableViewCell {
         return view
     }()
     
-    private let temperatureLabel: PSHeaderLabel = {
+    let temperatureLabel: PSHeaderLabel = {
         let label = PSHeaderLabel()
         label.text = "36°"
         label.textAlignment = .center
@@ -29,7 +29,7 @@ final class WeatherListCell: UITableViewCell {
         return label
     }()
     
-    private let countryLabel: UILabel = {
+    let countryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 32, weight: .heavy)
@@ -40,7 +40,7 @@ final class WeatherListCell: UITableViewCell {
         return label
     }()
     
-    private let cityLabel: UILabel = {
+    let cityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15, weight: .semibold)
@@ -51,19 +51,19 @@ final class WeatherListCell: UITableViewCell {
         return label
     }()
     
-    private let windSpeedInfoView: PSWeatherInfoItemView = {
+    let windSpeedInfoView: PSWeatherInfoItemView = {
         let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "wind"))
         item.labelColor = .customTitle
         return item
     }()
     
-    private let humidityInfoView: PSWeatherInfoItemView = {
+    let humidityInfoView: PSWeatherInfoItemView = {
         let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "humidity"))
         item.labelColor = .customTitle
         return item
     }()
     
-    private let weatherDescriptionLabel: UILabel = {
+    let weatherDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 12, weight: .heavy)

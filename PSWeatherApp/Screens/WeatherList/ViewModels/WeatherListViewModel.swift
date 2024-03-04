@@ -21,7 +21,7 @@ protocol WeatherListViewModelDelegate: AnyObject {
     func didFailToRemoveFavourite(_ error: Error)
 }
 
-final class WeatherListViewModel {
+class WeatherListViewModel {
     private var weathers: [Weather] = []
     
     private var filteredWeathers: [Weather] = []

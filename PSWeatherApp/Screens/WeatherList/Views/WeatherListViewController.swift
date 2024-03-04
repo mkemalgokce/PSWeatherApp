@@ -11,7 +11,7 @@ final class WeatherListViewController: UIViewController {
     private let viewModel: WeatherListViewModel
     private let weatherListView = WeatherListView()
     
-    private var tableView: UITableView  {
+    var tableView: UITableView  {
         weatherListView.tableView
     }
     

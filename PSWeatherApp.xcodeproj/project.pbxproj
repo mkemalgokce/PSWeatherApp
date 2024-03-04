@@ -32,6 +32,10 @@
 		551405612B95B61500503711 /* XCTests+MemoryLeakTrackingUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405442B95B3BF00503711 /* XCTests+MemoryLeakTrackingUtils.swift */; };
 		551405642B95B69100503711 /* LocalWeatherLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405632B95B69100503711 /* LocalWeatherLoaderTests.swift */; };
 		551405662B95BAF200503711 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405652B95BAF200503711 /* Date+Utils.swift */; };
+		551405692B95BD1D00503711 /* WeatherListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405682B95BD1D00503711 /* WeatherListViewModelTests.swift */; };
+		5514056C2B95C0B600503711 /* WeatherDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514056B2B95C0B600503711 /* WeatherDetailsViewModelTests.swift */; };
+		5514056F2B95C21200503711 /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5514056E2B95C21200503711 /* FavouritesViewModel.swift */; };
+		551405712B95C30F00503711 /* WeatherListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */; };
 		55E36BF52B93625C00CC9AEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF42B93625C00CC9AEC /* AppDelegate.swift */; };
 		55E36BF72B93625C00CC9AEC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */; };
 		55E36BF92B93625C00CC9AEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E36BF82B93625C00CC9AEC /* MainTabBarViewController.swift */; };
@@ -126,6 +130,10 @@
 		5514055D2B95B5F700503711 /* PSWeatherLoaderEndToEndTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = PSWeatherLoaderEndToEndTests.xctestplan; sourceTree = "<group>"; };
 		551405632B95B69100503711 /* LocalWeatherLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherLoaderTests.swift; sourceTree = "<group>"; };
 		551405652B95BAF200503711 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		551405682B95BD1D00503711 /* WeatherListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModelTests.swift; sourceTree = "<group>"; };
+		5514056B2B95C0B600503711 /* WeatherDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		5514056E2B95C21200503711 /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewControllerTests.swift; sourceTree = "<group>"; };
 		55E36BF12B93625C00CC9AEC /* PSWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E36BF42B93625C00CC9AEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55E36BF62B93625C00CC9AEC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +253,31 @@
 			path = WeatherCache;
 			sourceTree = "<group>";
 		};
+		551405672B95BD0800503711 /* WeatherListTests */ = {
+			isa = PBXGroup;
+			children = (
+				551405682B95BD1D00503711 /* WeatherListViewModelTests.swift */,
+				551405702B95C30F00503711 /* WeatherListViewControllerTests.swift */,
+			);
+			path = WeatherListTests;
+			sourceTree = "<group>";
+		};
+		5514056A2B95C0A900503711 /* WeatherDetailsTests */ = {
+			isa = PBXGroup;
+			children = (
+				5514056B2B95C0B600503711 /* WeatherDetailsViewModelTests.swift */,
+			);
+			path = WeatherDetailsTests;
+			sourceTree = "<group>";
+		};
+		5514056D2B95C20000503711 /* FavouritesTests */ = {
+			isa = PBXGroup;
+			children = (
+				5514056E2B95C21200503711 /* FavouritesViewModel.swift */,
+			);
+			path = FavouritesTests;
+			sourceTree = "<group>";
+		};
 		55E36BE82B93625C00CC9AEC = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +319,9 @@
 		55E36C0A2B93625E00CC9AEC /* PSWeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				5514056D2B95C20000503711 /* FavouritesTests */,
+				5514056A2B95C0A900503711 /* WeatherDetailsTests */,
+				551405672B95BD0800503711 /* WeatherListTests */,
 				551405622B95B67500503711 /* WeatherCache */,
 				551405432B95B39C00503711 /* Helpers */,
 				551405402B95B38500503711 /* Weather API */,
@@ -764,8 +800,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5514056F2B95C21200503711 /* FavouritesViewModel.swift in Sources */,
 				5514054B2B95B3BF00503711 /* Weather+Utils.swift in Sources */,
+				551405692B95BD1D00503711 /* WeatherListViewModelTests.swift in Sources */,
+				5514056C2B95C0B600503711 /* WeatherDetailsViewModelTests.swift in Sources */,
 				551405642B95B69100503711 /* LocalWeatherLoaderTests.swift in Sources */,
+				551405712B95C30F00503711 /* WeatherListViewControllerTests.swift in Sources */,
 				5514054A2B95B3BF00503711 /* XCTestCase+TestingUtils.swift in Sources */,
 				55E36C0C2B93625E00CC9AEC /* PSWeatherAppTests.swift in Sources */,
 				551405482B95B3BF00503711 /* XCTests+MemoryLeakTrackingUtils.swift in Sources */,
@@ -824,13 +864,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkg.PSWeatherAppWeatherAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSWeatherApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PSWeatherApp";
 			};
 			name = Debug;
@@ -843,13 +887,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkg.PSWeatherAppWeatherAPIEndToEndTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PSWeatherApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PSWeatherApp";
 			};
 			name = Release;
@@ -983,10 +1031,12 @@
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PSWeatherApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1015,10 +1065,12 @@
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PSWeatherApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Weather;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1046,7 +1098,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkg.PSWeatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1066,7 +1118,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q9ARVAPAG3;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkg.PSWeatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
