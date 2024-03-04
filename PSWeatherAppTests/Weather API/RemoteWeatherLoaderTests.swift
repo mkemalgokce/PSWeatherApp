@@ -168,20 +168,7 @@ final class RemoteWeatherLoaderTests: XCTestCase {
             
         }
     }
-    
-    private func anyWeather() -> Weather {
         
-        Weather(id: Int.random(in: 0..<50),
-                city: "TR",
-                country: "Istanbul",
-                temperature: Double.random(in: 0..<12),
-                weatherDescription: .random() ,
-                humidity: Int.random(in: 0..<50),
-                windSpeed: Double.random(in: 0..<12),
-                forecast: [])
-        
-    }
-    
     private func generateWeathersData() -> (weathers: [Weather], data: Data) {
         let weathers: [Weather] = [anyWeather(), anyWeather()]
         let data = try! JSONEncoder().encode(weathers)
