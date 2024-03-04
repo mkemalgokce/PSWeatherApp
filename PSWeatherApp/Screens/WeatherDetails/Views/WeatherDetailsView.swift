@@ -43,6 +43,7 @@ final class WeatherDetailsView: UIView {
         let item = PSWeatherInfoItemView(title: "Wind Speed: 14.6", image: UIImage(systemName: "wind"))
         item.labelFont = .systemFont(ofSize: 34, weight: .heavy)
         item.labelColor = .customTitle
+        item.tintColor = .customSecond
         return item
     }()
     
@@ -50,6 +51,7 @@ final class WeatherDetailsView: UIView {
         let item = PSWeatherInfoItemView(title: "Humidity: 14.6", image: UIImage(systemName: "humidity"))
         item.labelFont = .systemFont(ofSize: 34, weight: .heavy)
         item.labelColor = .customTitle
+        item.tintColor = .customSecond
         return item
     }()
     
@@ -79,7 +81,7 @@ final class WeatherDetailsView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
-      
+ 
         return collectionView
         
     }()
@@ -130,22 +132,23 @@ final class WeatherDetailsView: UIView {
             topHStack.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             
             topHStack.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor, constant: -32),
-            topHStack.heightAnchor.constraint(equalToConstant: 150),
+            topHStack.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 1/5),
             
             weatherDescriptionLabel.topAnchor.constraint(equalTo: topHStack.bottomAnchor, constant: 16),
             weatherDescriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 16),
             
-            windSpeedInfoView.topAnchor.constraint(equalTo: weatherDescriptionLabel.bottomAnchor, constant: 16),
+            windSpeedInfoView.topAnchor.constraint(equalToSystemSpacingBelow: weatherDescriptionLabel.bottomAnchor, multiplier: 2),
             windSpeedInfoView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             
-            humidityInfoView.topAnchor.constraint(equalTo: windSpeedInfoView.bottomAnchor, constant: 16),
+            humidityInfoView.topAnchor.constraint(equalToSystemSpacingBelow: windSpeedInfoView.bottomAnchor, multiplier: 2),
             humidityInfoView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             
             humidityInfoView.widthAnchor.constraint(equalTo: windSpeedInfoView.widthAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: humidityInfoView.bottomAnchor, constant: 16),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            collectionView.topAnchor.constraint(equalTo: humidityInfoView.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -12),
             collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
         ])
     }

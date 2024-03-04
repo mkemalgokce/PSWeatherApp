@@ -9,8 +9,9 @@ import UIKit
 
 final class WeatherDetailsViewController: UIViewController {
     private let viewModel: WeatherDetailViewModel
-    
     private let weatherDetailsView = WeatherDetailsView()
+    
+    private var cellSize: CGSize = .init(width: 0, height: 0)
     
     private var collectionView: UICollectionView {
         weatherDetailsView.collectionView
@@ -41,13 +42,13 @@ final class WeatherDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         configureNavigationBar()
     }
-    
+        
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(WeatherDetailsForecastCollectionViewCell.self,
                                 forCellWithReuseIdentifier: WeatherDetailsForecastCollectionViewCell.identifier)
-
+        
     }
     
     private func configureNavigationBar() {
@@ -76,7 +77,7 @@ extension WeatherDetailsViewController: WeatherDetailViewModelDelegate {
         
     }
     
-
+    
     func didFailToCheckFavourite(_ error: Error) {
         showAlertOnMainThread(title: "Error", message: error.localizedDescription)
     }
@@ -131,12 +132,28 @@ extension WeatherDetailsViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (view.bounds.width / 2) - 16
-        return CGSize(width: width, height: width * 1.2)
+        let height = width * 1.2
+        let collectionViewHeight = collectionView.bounds.height
+        
+        if height > collectionViewHeight {
+            cellSize = CGSize(width: collectionViewHeight - 16, height: collectionViewHeight)
+        }else {
+            cellSize = CGSize(width: width, height: height)
+        }
+        
+        return cellSize
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         8
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let collectionViewWidth = collectionView.bounds.width
+        let cellWidth = cellSize.width
+        let cellsWidth = (cellWidth * 2) + 18
+        let leftInset: CGFloat = collectionViewWidth - cellsWidth
+        return .init(top: 0, left: leftInset, bottom: 0, right: 0)
+    }
 }
 

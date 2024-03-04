@@ -42,17 +42,17 @@ final class WeatherDetailsForecastCollectionViewCell: UICollectionViewCell {
     
     private let windSpeedInfoView: PSWeatherInfoItemView = {
         let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "wind"))
-        item.labelColor = .white
+        item.labelColor = .customTitle
         item.labelFont = .systemFont(ofSize: 20, weight: .semibold)
-        item.tintColor = .white
+        item.tintColor = .customSecond
         return item
     }()
     
     private let humidityInfoView: PSWeatherInfoItemView = {
         let item = PSWeatherInfoItemView(title: "14.6", image: UIImage(systemName: "humidity"))
-        item.labelColor = .white
+        item.labelColor = .customTitle
         item.labelFont = .systemFont(ofSize: 20, weight: .semibold)
-        item.tintColor = .white
+        item.tintColor = .customSecond
         return item
     }()
     
@@ -62,6 +62,8 @@ final class WeatherDetailsForecastCollectionViewCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 12, weight: .heavy)
         label.text = "..."
         label.textColor = .customTitle
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.textAlignment = .center
         return label
     }()
@@ -123,6 +125,7 @@ final class WeatherDetailsForecastCollectionViewCell: UICollectionViewCell {
             
             weatherDescriptionLabel.topAnchor.constraint(equalToSystemSpacingBelow: temperatureLabel.bottomAnchor, multiplier: 1),
             weatherDescriptionLabel.centerXAnchor.constraint(equalTo: temperatureLabel.centerXAnchor),
+            weatherDescriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
             
             windSpeedInfoView.topAnchor.constraint(equalToSystemSpacingBelow: weatherDescriptionLabel.bottomAnchor, multiplier: 2),
             windSpeedInfoView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -130,8 +133,9 @@ final class WeatherDetailsForecastCollectionViewCell: UICollectionViewCell {
             humidityInfoView.topAnchor.constraint(equalTo: windSpeedInfoView.bottomAnchor),
             humidityInfoView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-        
+            humidityInfoView.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -4),
             
+        
         ])
     }
     
