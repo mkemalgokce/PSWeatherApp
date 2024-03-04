@@ -93,7 +93,7 @@ extension WeatherListViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let weather = viewModel.weather(at: indexPath)
+        let weather = viewModel.item(isFiltering: isFiltering(), at: indexPath)
         presentWeatherDetails(weather)
     }
     
