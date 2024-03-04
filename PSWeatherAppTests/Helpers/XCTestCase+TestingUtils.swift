@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+@testable import PSWeatherApp
 
 extension XCTestCase {
     func anyURL() -> URL { URL(string: "https://any-url.com")! }
@@ -14,4 +14,5 @@ extension XCTestCase {
     func anyNSError() -> NSError { NSError(domain: "any", code: -1) }
     func anyHTTPURLResponse() -> HTTPURLResponse { HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)! }
     func nonHTTPURLResponse() -> URLResponse { URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil) }
+    func anyWeather() -> Weather { Weather.generate(id: Int.random(in: 0..<5), city: "Ist", country: "TR") }
 }
