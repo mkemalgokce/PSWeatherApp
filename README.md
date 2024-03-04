@@ -1,18 +1,31 @@
 
 # Weather App
 
-## Scheme Images:
+This Weather App is a simple iOS application that allows users to check the latest weather forecasts for their location. It utilizes Apple's frameworks and libraries without any third-party dependencies. The app provides features such as caching weather data locally using CoreData, managing favorites, and displaying accurate weather information. Additionally, the app supports both Dark Mode and Light Mode to enhance the user experience.
 
-### Loader
-<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/LoaderDrawing.png" width=400/>
+## Features
+- Local Caching: Weather data is cached locally using CoreData to provide offline access and improve app performance.
+- Favorites Management: Users can add and remove their favorite locations to easily access weather forecasts for those locations.
+- Accurate Weather Forecasts: The app fetches weather data from reliable sources to provide users with up-to-date and accurate weather information.
+- Dark Mode and Light Mode Support: The app seamlessly adapts to the user's preferred appearance, providing a comfortable viewing experience in both Dark Mode and Light Mode.
+- Apple Frameworks: The app is built entirely using Apple's frameworks and libraries, ensuring reliability and compatibility with iOS devices.
 
-### Screens
-<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeatherScreens.png" width=400/>
+## App Requirements
+- iOS 13.0+
+- Swift 5.0
 
 
-### Cache
-<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeather.png" width=400/>
+## Screenshots
 
+### Light
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/e8e4e6f2-f65a-4be0-9cda-3893bd21d834" width=400/>
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/6e7c5760-e226-4909-a255-3dad24b15fe2" width=400/>
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/ac38356d-6b0c-4ab3-b388-fedee7ffc435" width=400/>
+
+### Dark
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/64fba0f8-e53d-4150-a6b6-0c19265f9757" width=400/>
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/1f56d3c3-aae9-40b7-b012-ba06c8f64ef8" width=400/>
+<img src="https://github.com/mkemalgokce/PSWeatherApp/assets/46056478/12af3a8c-7549-4c14-a2e7-f184033e4cac" width=400/>
 
 ## Requirements:
 
@@ -107,3 +120,15 @@ Technical Implementation:
 Please submit your assignment as a complete iOS project, including all source code, resources, unit tests, and any additional documentation or instructions required to build and run the application.
 
 > Note: This assignment is intended to assess your mobile application development skills and your ability to create a functional, user-friendly, and well-structured iOS application. Make sure to follow the requirements and evaluation criteria carefully and demonstrate your best work. Good luck!
+
+## Scheme Images:
+
+### Loader
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/LoaderDrawing.png" width=400/>
+
+### Screens
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeatherScreens.png" width=400/>
+
+
+### Cache
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeather.png" width=400/>
