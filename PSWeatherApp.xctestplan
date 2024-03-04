@@ -1,0 +1,46 @@
+{
+  "configurations" : [
+    {
+      "id" : "09B4C61C-1101-4374-9C8C-FE40C2091B9A",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:PSWeatherApp.xcodeproj",
+      "identifier" : "55E36BF02B93625C00CC9AEC",
+      "name" : "PSWeatherApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:PSWeatherApp.xcodeproj",
+        "identifier" : "55E36C062B93625E00CC9AEC",
+        "name" : "PSWeatherAppTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:PSWeatherApp.xcodeproj",
+        "identifier" : "55E36C102B93625E00CC9AEC",
+        "name" : "PSWeatherAppUITests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:PSWeatherApp.xcodeproj",
+        "identifier" : "5514054F2B95B5AF00503711",
+        "name" : "PSWeatherAppWeatherAPIEndToEndTests"
+      }
+    }
+  ],
+  "version" : 1
+}
