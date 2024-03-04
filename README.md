@@ -1,6 +1,19 @@
 
 # Weather App
 
+## Scheme Images:
+
+### Loader
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/LoaderDrawing.png" width=400/>
+
+### Screens
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeatherScreens.png" width=400/>
+
+
+### Cache
+<img src="https://github.com/mkemalgokce/PSWeatherApp/blob/main/Images/PSWeather.png" width=400/>
+
+
 ## Requirements:
 
 ### Screens:
